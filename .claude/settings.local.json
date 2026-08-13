@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Process postgres -ErrorAction SilentlyContinue)",
+      "PowerShell(Test-NetConnection -ComputerName localhost -Port 5432 -WarningAction SilentlyContinue)",
+      "PowerShell(docker --version 2>$null)",
+      "PowerShell(docker compose version 2>$null)",
+      "PowerShell(python --version 2>&1)",
+      "PowerShell(node --version 2>&1)",
+      "PowerShell(npm --version 2>&1)",
+      "PowerShell(Start-Service -Name \"postgresql-x64-16\" -ErrorAction Stop)",
+      "PowerShell(Get-Service -Name \"postgresql-x64-16\")",
+      "PowerShell(Test-NetConnection -ComputerName localhost -Port 8000 -WarningAction SilentlyContinue)",
+      "PowerShell(Test-NetConnection -ComputerName localhost -Port 3000 -WarningAction SilentlyContinue)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess | ForEach-Object { Get-Process -Id $_ | Select-Object Id, ProcessName, Path })",
+      "PowerShell(& \"C:\\\\Program Files\\\\PostgreSQL\\\\16\\\\bin\\\\psql.exe\" -U resumefraud -d resumefraud -h localhost -c \"SELECT version_num FROM alembic_version;\" 2>&1)",
+      "PowerShell(& \"C:\\\\Program Files\\\\PostgreSQL\\\\16\\\\bin\\\\psql.exe\" -U resumefraud -d resumefraud -h localhost -w -c \"SELECT 1;\" 2>&1)",
+      "PowerShell(& \"C:\\\\Program Files\\\\PostgreSQL\\\\16\\\\bin\\\\psql.exe\" -U resumefraud -d resumefraud -h 127.0.0.1 -w -c \"SELECT version_num FROM alembic_version;\" 2>&1)",
+      "PowerShell(Get-CimInstance Win32_Process -Filter \"ProcessId=17752\")",
+      "PowerShell(Stop-Service -Name \"postgresql-x64-16\" -Force)",
+      "PowerShell(net stop postgresql-x64-16 2>&1)"
+    ]
+  }
+}

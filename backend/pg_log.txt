@@ -1,0 +1,426 @@
+2026-08-02 00:28:49.033 GMT [13648] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-02 00:28:49.044 GMT [13648] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-02 00:28:49.044 GMT [13648] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-02 00:28:49.222 GMT [22920] LOG:  database system was shut down at 2026-08-02 00:28:24 GMT
+2026-08-02 00:28:49.343 GMT [13648] LOG:  database system is ready to accept connections
+2026-08-02 00:29:48.534 GMT [5692] FATAL:  role "BLUEWAVE COMP" does not exist
+2026-08-02 00:30:44.947 GMT [6920] ERROR:  type "user_role" already exists
+2026-08-02 00:30:44.947 GMT [6920] STATEMENT:  CREATE TYPE user_role AS ENUM ('admin', 'recruiter')
+2026-08-02 00:32:25.716 GMT [24344] ERROR:  invalid input value for enum user_role: "ADMIN" at character 200
+2026-08-02 00:32:25.716 GMT [24344] STATEMENT:  INSERT INTO users (name, email, password_hash, role, is_active, organization, id) VALUES ('System Administrator', 'admin@example.com', '$2b$12$sbOlp5d6UQBslSNE868Khuf/n3WGRX8gHGvTSRw.QJ1PTNLeoyHnK', 'ADMIN', true, NULL, '7ac9cc16-71a8-4613-bf97-389c85f48db0'::uuid::UUID) RETURNING users.created_at, users.updated_at
+2026-08-02 00:33:49.208 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 00:35:43.723 GMT [8020] LOG:  checkpoint complete: wrote 1043 buffers (6.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=111.263 s, sync=3.165 s, total=114.516 s; sync files=346, longest=0.049 s, average=0.010 s; distance=4990 kB, estimate=4990 kB; lsn=0/1A77D38, redo lsn=0/1A570B0
+2026-08-02 00:43:49.740 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 00:43:55.285 GMT [8020] LOG:  checkpoint complete: wrote 46 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.821 s, sync=0.631 s, total=5.545 s; sync files=34, longest=0.089 s, average=0.019 s; distance=145 kB, estimate=4506 kB; lsn=0/1A7B5B0, redo lsn=0/1A7B578
+2026-08-02 00:48:49.289 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 00:48:49.947 GMT [8020] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.428 s, sync=0.125 s, total=0.658 s; sync files=5, longest=0.037 s, average=0.025 s; distance=1 kB, estimate=4055 kB; lsn=0/1A7BBF0, redo lsn=0/1A7BBB8
+2026-08-02 01:08:49.974 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 01:08:51.153 GMT [8020] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.830 s, sync=0.220 s, total=1.180 s; sync files=6, longest=0.067 s, average=0.037 s; distance=1 kB, estimate=3650 kB; lsn=0/1A7C1B8, redo lsn=0/1A7C180
+2026-08-02 01:13:49.158 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 01:13:52.624 GMT [8020] LOG:  checkpoint complete: wrote 26 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.691 s, sync=0.651 s, total=3.466 s; sync files=19, longest=0.162 s, average=0.035 s; distance=7 kB, estimate=3285 kB; lsn=0/1A7E070, redo lsn=0/1A7E038
+2026-08-02 01:23:49.637 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 01:23:50.449 GMT [8020] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.537 s, sync=0.158 s, total=0.813 s; sync files=6, longest=0.041 s, average=0.027 s; distance=1 kB, estimate=2957 kB; lsn=0/1A7E6C8, redo lsn=0/1A7E690
+2026-08-02 01:28:49.464 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 01:28:50.512 GMT [8020] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.714 s, sync=0.236 s, total=1.049 s; sync files=7, longest=0.068 s, average=0.034 s; distance=8 kB, estimate=2662 kB; lsn=0/1A809A0, redo lsn=0/1A80968
+2026-08-02 01:33:49.518 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 01:33:51.274 GMT [8020] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.294 s, sync=0.386 s, total=1.757 s; sync files=13, longest=0.050 s, average=0.030 s; distance=18 kB, estimate=2398 kB; lsn=0/1A851A8, redo lsn=0/1A85170
+2026-08-02 01:48:49.291 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 01:48:51.530 GMT [8020] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.569 s, sync=0.519 s, total=2.240 s; sync files=15, longest=0.061 s, average=0.035 s; distance=22 kB, estimate=2160 kB; lsn=0/1A8AB40, redo lsn=0/1A8AB08
+2026-08-02 01:53:49.537 GMT [8020] LOG:  checkpoint starting: time
+2026-08-02 01:53:51.828 GMT [8020] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.723 s, sync=0.454 s, total=2.291 s; sync files=16, longest=0.035 s, average=0.029 s; distance=21 kB, estimate=1946 kB; lsn=0/1A90298, redo lsn=0/1A90260
+2026-08-02 01:55:01.386 GMT [3840] FATAL:  terminating connection due to unexpected postmaster exit
+2026-08-02 01:55:01.387 GMT [21724] FATAL:  terminating connection due to unexpected postmaster exit
+2026-08-03 10:50:57.385 GMT [23568] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-03 10:50:57.391 GMT [23568] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-03 10:50:57.392 GMT [23568] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-03 10:50:57.614 GMT [21764] LOG:  database system was interrupted; last known up at 2026-08-02 01:53:51 GMT
+2026-08-03 10:51:05.454 GMT [21764] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-03 10:51:05.513 GMT [21764] LOG:  redo starts at 0/1A90260
+2026-08-03 10:51:05.514 GMT [21764] LOG:  invalid record length at 0/1A90348: expected at least 24, got 0
+2026-08-03 10:51:05.514 GMT [21764] LOG:  redo done at 0/1A90310 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-08-03 10:51:05.586 GMT [20536] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-03 10:51:05.708 GMT [20536] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.034 s, total=0.181 s; sync files=2, longest=0.034 s, average=0.017 s; distance=0 kB, estimate=0 kB; lsn=0/1A90348, redo lsn=0/1A90348
+2026-08-03 10:51:05.809 GMT [23568] LOG:  database system is ready to accept connections
+2026-08-03 11:21:05.744 GMT [20536] LOG:  checkpoint starting: time
+2026-08-03 11:21:07.954 GMT [20536] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.207 s, sync=0.376 s, total=2.215 s; sync files=10, longest=0.056 s, average=0.038 s; distance=10 kB, estimate=10 kB; lsn=0/1A92E38, redo lsn=0/1A92E00
+2026-08-03 11:26:05.957 GMT [20536] LOG:  checkpoint starting: time
+2026-08-03 11:26:07.797 GMT [20536] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.278 s, sync=0.441 s, total=1.841 s; sync files=13, longest=0.085 s, average=0.034 s; distance=26 kB, estimate=26 kB; lsn=0/1A99850, redo lsn=0/1A99818
+2026-08-03 12:22:33.647 GMT [23568] LOG:  received fast shutdown request
+2026-08-03 12:22:33.656 GMT [23284] ERROR:  canceling statement due to user request
+2026-08-03 12:22:33.684 GMT [23568] LOG:  aborting any active transactions
+2026-08-03 12:22:33.686 GMT [14996] FATAL:  terminating connection due to administrator command
+2026-08-03 12:22:33.687 GMT [13340] FATAL:  terminating connection due to administrator command
+2026-08-03 12:22:33.712 GMT [23568] LOG:  background worker "logical replication launcher" (PID 23284) exited with exit code 1
+2026-08-03 12:22:34.001 GMT [20536] LOG:  shutting down
+2026-08-03 12:22:34.042 GMT [20536] LOG:  checkpoint starting: shutdown immediate
+2026-08-03 12:22:34.414 GMT [20536] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.413 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=23 kB; lsn=0/1A99900, redo lsn=0/1A99900
+2026-08-03 12:22:34.509 GMT [23568] LOG:  database system is shut down
+2026-08-03 12:26:11.568 GMT [2596] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-03 12:26:11.590 GMT [2596] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-03 12:26:11.614 GMT [2596] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-03 12:26:11.754 GMT [32972] LOG:  database system was shut down at 2026-08-03 12:22:34 GMT
+2026-08-03 12:26:11.936 GMT [2596] LOG:  database system is ready to accept connections
+2026-08-03 12:31:11.759 GMT [33476] LOG:  checkpoint starting: time
+2026-08-03 12:31:11.895 GMT [33476] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.034 s, total=0.137 s; sync files=2, longest=0.033 s, average=0.017 s; distance=0 kB, estimate=0 kB; lsn=0/1A999E8, redo lsn=0/1A999B0
+2026-08-03 12:39:53.666 GMT [2596] LOG:  received fast shutdown request
+2026-08-03 12:39:53.671 GMT [26904] ERROR:  canceling statement due to user request
+2026-08-03 12:39:53.702 GMT [2596] LOG:  aborting any active transactions
+2026-08-03 12:39:53.703 GMT [26320] FATAL:  terminating connection due to administrator command
+2026-08-03 12:39:53.704 GMT [29928] FATAL:  terminating connection due to administrator command
+2026-08-03 12:39:53.717 GMT [2596] LOG:  background worker "logical replication launcher" (PID 26904) exited with exit code 1
+2026-08-03 12:39:53.808 GMT [33476] LOG:  shutting down
+2026-08-03 12:39:53.861 GMT [33476] LOG:  checkpoint starting: shutdown immediate
+2026-08-03 12:39:54.058 GMT [33476] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.250 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/1A99A98, redo lsn=0/1A99A98
+2026-08-03 12:39:54.080 GMT [2596] LOG:  database system is shut down
+2026-08-03 12:56:45.178 GMT [39128] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-03 12:56:45.188 GMT [39128] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-03 12:56:45.189 GMT [39128] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-03 12:56:45.432 GMT [35948] LOG:  database system was shut down at 2026-08-03 12:39:54 GMT
+2026-08-03 12:56:45.621 GMT [39128] LOG:  database system is ready to accept connections
+2026-08-03 13:01:45.418 GMT [25344] LOG:  checkpoint starting: time
+2026-08-03 13:01:45.545 GMT [25344] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.035 s, total=0.127 s; sync files=2, longest=0.034 s, average=0.018 s; distance=0 kB, estimate=0 kB; lsn=0/1A99B80, redo lsn=0/1A99B48
+2026-08-03 13:10:01.018 GMT [39128] LOG:  received fast shutdown request
+2026-08-03 13:10:01.025 GMT [28912] ERROR:  canceling statement due to user request
+2026-08-03 13:10:01.068 GMT [39128] LOG:  aborting any active transactions
+2026-08-03 13:10:01.072 GMT [39300] FATAL:  terminating connection due to administrator command
+2026-08-03 13:10:01.072 GMT [29972] FATAL:  terminating connection due to administrator command
+2026-08-03 13:10:01.073 GMT [39128] LOG:  background worker "logical replication launcher" (PID 28912) exited with exit code 1
+2026-08-03 13:10:01.138 GMT [25344] LOG:  shutting down
+2026-08-03 13:10:01.173 GMT [25344] LOG:  checkpoint starting: shutdown immediate
+2026-08-03 13:10:01.318 GMT [25344] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.180 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/1A99C30, redo lsn=0/1A99C30
+2026-08-03 13:10:01.375 GMT [39128] LOG:  database system is shut down
+2026-08-03 13:15:49.303 GMT [29704] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-03 13:15:49.312 GMT [29704] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-03 13:15:49.312 GMT [29704] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-03 13:15:49.520 GMT [30424] LOG:  database system was shut down at 2026-08-03 13:10:01 GMT
+2026-08-03 13:15:49.703 GMT [29704] LOG:  database system is ready to accept connections
+2026-08-03 13:20:49.594 GMT [27756] LOG:  checkpoint starting: time
+2026-08-03 13:20:50.509 GMT [27756] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.665 s, sync=0.137 s, total=0.915 s; sync files=7, longest=0.038 s, average=0.020 s; distance=30 kB, estimate=30 kB; lsn=0/1AA1630, redo lsn=0/1AA15F8
+2026-08-03 13:45:49.518 GMT [27756] LOG:  checkpoint starting: time
+2026-08-03 13:45:50.362 GMT [27756] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.447 s, sync=0.221 s, total=0.845 s; sync files=5, longest=0.089 s, average=0.045 s; distance=2 kB, estimate=27 kB; lsn=0/1AA1FB0, redo lsn=0/1AA1F78
+2026-08-03 13:50:49.370 GMT [27756] LOG:  checkpoint starting: time
+2026-08-03 13:50:51.017 GMT [27756] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.768 s, sync=0.683 s, total=1.648 s; sync files=8, longest=0.271 s, average=0.086 s; distance=19 kB, estimate=26 kB; lsn=0/1AA6CB8, redo lsn=0/1AA6C80
+2026-08-03 13:55:49.025 GMT [27756] LOG:  checkpoint starting: time
+2026-08-03 13:55:50.294 GMT [27756] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.871 s, sync=0.284 s, total=1.270 s; sync files=9, longest=0.047 s, average=0.032 s; distance=14 kB, estimate=25 kB; lsn=0/1AAA510, redo lsn=0/1AAA4D8
+2026-08-03 16:12:46.579 GMT [29704] LOG:  received fast shutdown request
+2026-08-03 16:12:46.586 GMT [19268] ERROR:  canceling statement due to user request
+2026-08-03 16:12:46.684 GMT [29704] LOG:  aborting any active transactions
+2026-08-03 16:12:46.687 GMT [22512] FATAL:  terminating connection due to administrator command
+2026-08-03 16:12:46.687 GMT [29636] FATAL:  terminating connection due to administrator command
+2026-08-03 16:12:46.688 GMT [23992] FATAL:  terminating connection due to administrator command
+2026-08-03 16:12:46.689 GMT [29704] LOG:  background worker "logical replication launcher" (PID 19268) exited with exit code 1
+2026-08-03 16:12:46.689 GMT [22460] FATAL:  terminating connection due to administrator command
+2026-08-03 16:12:46.931 GMT [27756] LOG:  shutting down
+2026-08-03 16:12:46.987 GMT [27756] LOG:  checkpoint starting: shutdown immediate
+2026-08-03 16:12:47.406 GMT [27756] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.041 s, total=0.475 s; sync files=1, longest=0.041 s, average=0.041 s; distance=0 kB, estimate=22 kB; lsn=0/1AAA5C0, redo lsn=0/1AAA5C0
+2026-08-03 16:12:47.439 GMT [29704] LOG:  database system is shut down
+2026-08-03 16:14:26.709 GMT [30472] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-03 16:14:26.715 GMT [30472] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-03 16:14:26.715 GMT [30472] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-03 16:14:27.083 GMT [19088] LOG:  database system was shut down at 2026-08-03 16:12:47 GMT
+2026-08-03 16:14:27.247 GMT [30472] LOG:  database system is ready to accept connections
+2026-08-03 16:19:27.082 GMT [37660] LOG:  checkpoint starting: time
+2026-08-03 16:19:27.777 GMT [37660] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.451 s, sync=0.128 s, total=0.696 s; sync files=6, longest=0.036 s, average=0.022 s; distance=2 kB, estimate=2 kB; lsn=0/1AAB0B0, redo lsn=0/1AAB078
+2026-08-03 16:24:27.793 GMT [37660] LOG:  checkpoint starting: time
+2026-08-03 16:24:28.693 GMT [37660] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.545 s, sync=0.255 s, total=0.901 s; sync files=6, longest=0.135 s, average=0.043 s; distance=6 kB, estimate=6 kB; lsn=0/1AAC988, redo lsn=0/1AAC950
+2026-08-03 17:51:28.949 GMT [30472] LOG:  received fast shutdown request
+2026-08-03 17:51:28.957 GMT [30076] ERROR:  canceling statement due to user request
+2026-08-03 17:51:29.026 GMT [30472] LOG:  aborting any active transactions
+2026-08-03 17:51:29.031 GMT [26360] FATAL:  terminating connection due to administrator command
+2026-08-03 17:51:29.032 GMT [33548] FATAL:  terminating connection due to administrator command
+2026-08-03 17:51:29.034 GMT [33420] FATAL:  terminating connection due to administrator command
+2026-08-03 17:51:29.073 GMT [30472] LOG:  background worker "logical replication launcher" (PID 30076) exited with exit code 1
+2026-08-03 17:51:29.408 GMT [37660] LOG:  shutting down
+2026-08-03 17:51:29.441 GMT [37660] LOG:  checkpoint starting: shutdown immediate
+2026-08-03 17:51:29.641 GMT [37660] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.233 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=5 kB; lsn=0/1AACA38, redo lsn=0/1AACA38
+2026-08-03 17:51:29.687 GMT [30472] LOG:  database system is shut down
+2026-08-03 17:52:51.534 GMT [31240] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-03 17:52:51.545 GMT [31240] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-03 17:52:51.546 GMT [31240] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-03 17:52:51.806 GMT [23164] LOG:  database system was shut down at 2026-08-03 17:51:29 GMT
+2026-08-03 17:52:52.073 GMT [31240] LOG:  database system is ready to accept connections
+2026-08-03 17:57:51.801 GMT [36216] LOG:  checkpoint starting: time
+2026-08-03 17:57:51.968 GMT [36216] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.018 s, sync=0.051 s, total=0.168 s; sync files=2, longest=0.050 s, average=0.026 s; distance=0 kB, estimate=0 kB; lsn=0/1AACB20, redo lsn=0/1AACAE8
+2026-08-04 13:32:24.704 GMT [18016] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-04 13:32:24.709 GMT [18016] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-04 13:32:24.709 GMT [18016] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-04 13:32:25.017 GMT [8508] LOG:  database system was interrupted; last known up at 2026-08-03 17:57:51 GMT
+2026-08-04 13:32:32.215 GMT [8508] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-04 13:32:32.270 GMT [8508] LOG:  redo starts at 0/1AACAE8
+2026-08-04 13:32:32.270 GMT [8508] LOG:  invalid record length at 0/1AACBD0: expected at least 24, got 0
+2026-08-04 13:32:32.270 GMT [8508] LOG:  redo done at 0/1AACB98 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-08-04 13:32:32.346 GMT [18568] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-04 13:32:32.479 GMT [18568] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.030 s, total=0.169 s; sync files=2, longest=0.029 s, average=0.015 s; distance=0 kB, estimate=0 kB; lsn=0/1AACBD0, redo lsn=0/1AACBD0
+2026-08-04 13:32:32.560 GMT [18016] LOG:  database system is ready to accept connections
+2026-08-04 13:37:32.487 GMT [18568] LOG:  checkpoint starting: time
+2026-08-04 13:37:34.104 GMT [18568] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.000 s, sync=0.350 s, total=1.617 s; sync files=10, longest=0.065 s, average=0.035 s; distance=12 kB, estimate=12 kB; lsn=0/1AAFFE8, redo lsn=0/1AAFFB0
+2026-08-04 13:42:32.105 GMT [18568] LOG:  checkpoint starting: time
+2026-08-04 13:42:33.315 GMT [18568] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.853 s, sync=0.230 s, total=1.211 s; sync files=9, longest=0.036 s, average=0.026 s; distance=13 kB, estimate=13 kB; lsn=0/1AB37C8, redo lsn=0/1AB3790
+2026-08-04 14:11:08.121 GMT [18016] LOG:  received fast shutdown request
+2026-08-04 14:11:08.129 GMT [12520] ERROR:  canceling statement due to user request
+2026-08-04 14:11:08.162 GMT [18016] LOG:  aborting any active transactions
+2026-08-04 14:11:08.164 GMT [18016] LOG:  background worker "logical replication launcher" (PID 12520) exited with exit code 1
+2026-08-04 14:11:08.165 GMT [11128] FATAL:  terminating connection due to administrator command
+2026-08-04 14:11:08.166 GMT [11704] FATAL:  terminating connection due to administrator command
+2026-08-04 14:11:08.205 GMT [18568] LOG:  shutting down
+2026-08-04 14:11:08.248 GMT [18568] LOG:  checkpoint starting: shutdown immediate
+2026-08-04 14:11:08.402 GMT [18568] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.197 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=12 kB; lsn=0/1AB3878, redo lsn=0/1AB3878
+2026-08-04 14:11:08.451 GMT [18016] LOG:  database system is shut down
+2026-08-04 14:58:36.873 GMT [16244] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-04 14:58:36.878 GMT [16244] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-04 14:58:36.878 GMT [16244] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-04 14:58:37.115 GMT [3136] LOG:  database system was shut down at 2026-08-04 14:11:08 GMT
+2026-08-04 14:58:37.355 GMT [16244] LOG:  database system is ready to accept connections
+2026-08-04 15:03:37.109 GMT [12176] LOG:  checkpoint starting: time
+2026-08-04 15:03:43.257 GMT [12176] LOG:  checkpoint complete: wrote 53 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=5.516 s, sync=0.517 s, total=6.148 s; sync files=52, longest=0.042 s, average=0.010 s; distance=216 kB, estimate=216 kB; lsn=0/1AE9968, redo lsn=0/1AE9930
+2026-08-04 15:23:37.323 GMT [12176] LOG:  checkpoint starting: time
+2026-08-04 15:23:42.038 GMT [12176] LOG:  checkpoint complete: wrote 38 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.045 s, sync=0.513 s, total=4.720 s; sync files=30, longest=0.078 s, average=0.018 s; distance=33 kB, estimate=197 kB; lsn=0/1AF2060, redo lsn=0/1AF2028
+2026-08-04 15:58:37.177 GMT [12176] LOG:  checkpoint starting: time
+2026-08-04 15:58:38.828 GMT [12176] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.981 s, sync=0.403 s, total=1.741 s; sync files=10, longest=0.085 s, average=0.041 s; distance=7 kB, estimate=178 kB; lsn=0/1AF3CB0, redo lsn=0/1AF3C78
+2026-08-04 16:00:45.379 GMT [9860] ERROR:  update or delete on table "resumes" violates foreign key constraint "job_matches_resume_id_fkey" on table "job_matches"
+2026-08-04 16:00:45.379 GMT [9860] DETAIL:  Key (id)=(72ecce32-6bc0-4d01-8095-c503d5cec693) is still referenced from table "job_matches".
+2026-08-04 16:00:45.379 GMT [9860] STATEMENT:  DELETE FROM resumes WHERE resumes.id = '72ecce32-6bc0-4d01-8095-c503d5cec693'::uuid::UUID
+2026-08-04 16:02:38.723 GMT [16244] LOG:  received fast shutdown request
+2026-08-04 16:02:38.725 GMT [5152] ERROR:  canceling statement due to user request
+2026-08-04 16:02:38.762 GMT [16244] LOG:  aborting any active transactions
+2026-08-04 16:02:38.763 GMT [19992] FATAL:  terminating connection due to administrator command
+2026-08-04 16:02:38.765 GMT [16244] LOG:  server process (PID 21228) was terminated by exception 0xC000013A
+2026-08-04 16:02:38.765 GMT [16244] HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+2026-08-04 16:02:38.765 GMT [16244] LOG:  terminating any other active server processes
+2026-08-04 16:02:38.786 GMT [16244] LOG:  background worker "logical replication launcher" (PID 5152) exited with exit code 1
+2026-08-04 16:02:38.879 GMT [16244] LOG:  abnormal database system shutdown
+2026-08-04 16:02:38.881 GMT [16244] LOG:  database system is shut down
+2026-08-04 16:04:47.306 GMT [7816] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-04 16:04:47.311 GMT [7816] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-04 16:04:47.312 GMT [7816] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-04 16:04:47.717 GMT [23044] LOG:  database system was interrupted; last known up at 2026-08-04 15:58:38 GMT
+2026-08-04 16:04:49.514 GMT [23044] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-04 16:04:49.632 GMT [23044] LOG:  redo starts at 0/1AF3C78
+2026-08-04 16:04:49.662 GMT [23044] LOG:  invalid record length at 0/1AF9B00: expected at least 24, got 0
+2026-08-04 16:04:49.662 GMT [23044] LOG:  redo done at 0/1AF9AC8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.06 s
+2026-08-04 16:04:49.718 GMT [4840] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-04 16:04:50.551 GMT [4840] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.035 s, sync=0.686 s, total=0.861 s; sync files=16, longest=0.119 s, average=0.043 s; distance=23 kB, estimate=23 kB; lsn=0/1AF9B00, redo lsn=0/1AF9B00
+2026-08-04 16:04:50.859 GMT [7816] LOG:  database system is ready to accept connections
+2026-08-04 16:09:49.551 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 16:09:53.137 GMT [4840] LOG:  checkpoint complete: wrote 28 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.976 s, sync=0.433 s, total=3.586 s; sync files=22, longest=0.057 s, average=0.020 s; distance=95 kB, estimate=95 kB; lsn=0/1B11AB8, redo lsn=0/1B11A80
+2026-08-04 16:14:49.144 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 16:14:51.419 GMT [4840] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.647 s, sync=0.509 s, total=2.275 s; sync files=16, longest=0.038 s, average=0.032 s; distance=25 kB, estimate=88 kB; lsn=0/1B18248, redo lsn=0/1B18210
+2026-08-04 16:29:49.443 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 16:29:50.557 GMT [4840] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.748 s, sync=0.225 s, total=1.115 s; sync files=8, longest=0.035 s, average=0.029 s; distance=14 kB, estimate=81 kB; lsn=0/1B1BAC8, redo lsn=0/1B1BA90
+2026-08-04 16:34:49.560 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 16:34:50.521 GMT [4840] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.643 s, sync=0.194 s, total=0.962 s; sync files=7, longest=0.037 s, average=0.028 s; distance=16 kB, estimate=74 kB; lsn=0/1B1FB78, redo lsn=0/1B1FB40
+2026-08-04 16:39:49.529 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 16:39:51.273 GMT [4840] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.269 s, sync=0.335 s, total=1.745 s; sync files=11, longest=0.047 s, average=0.031 s; distance=19 kB, estimate=69 kB; lsn=0/1B24A50, redo lsn=0/1B24A18
+2026-08-04 16:59:49.298 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 16:59:52.248 GMT [4840] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.934 s, sync=0.841 s, total=2.951 s; sync files=16, longest=0.133 s, average=0.053 s; distance=22 kB, estimate=64 kB; lsn=0/1B2A430, redo lsn=0/1B2A3F8
+2026-08-04 17:04:49.322 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 17:04:51.839 GMT [4840] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.936 s, sync=0.297 s, total=2.517 s; sync files=16, longest=0.036 s, average=0.019 s; distance=23 kB, estimate=60 kB; lsn=0/1B30098, redo lsn=0/1B30060
+2026-08-04 17:09:49.847 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 17:09:51.500 GMT [4840] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.095 s, sync=0.446 s, total=1.653 s; sync files=11, longest=0.087 s, average=0.041 s; distance=12 kB, estimate=55 kB; lsn=0/1B332D0, redo lsn=0/1B33298
+2026-08-04 17:19:49.509 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 17:19:50.906 GMT [4840] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.988 s, sync=0.285 s, total=1.398 s; sync files=10, longest=0.044 s, average=0.029 s; distance=10 kB, estimate=51 kB; lsn=0/1B35D58, redo lsn=0/1B35D20
+2026-08-04 17:44:49.955 GMT [4840] LOG:  checkpoint starting: time
+2026-08-04 17:44:53.627 GMT [4840] LOG:  checkpoint complete: wrote 23 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.485 s, sync=0.899 s, total=3.674 s; sync files=23, longest=0.152 s, average=0.040 s; distance=40 kB, estimate=50 kB; lsn=0/1B400A8, redo lsn=0/1B40070
+2026-08-05 08:25:50.940 GMT [14476] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-05 08:25:50.947 GMT [14476] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-05 08:25:50.947 GMT [14476] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-05 08:25:51.242 GMT [16488] LOG:  database system was interrupted; last known up at 2026-08-04 17:44:53 GMT
+2026-08-05 08:25:59.600 GMT [16488] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-05 08:25:59.674 GMT [16488] LOG:  redo starts at 0/1B40070
+2026-08-05 08:25:59.716 GMT [16488] LOG:  invalid record length at 0/1B44120: expected at least 24, got 0
+2026-08-05 08:25:59.716 GMT [16488] LOG:  redo done at 0/1B440E8 system usage: CPU: user: 0.00 s, system: 0.01 s, elapsed: 0.04 s
+2026-08-05 08:25:59.768 GMT [13020] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-05 08:26:00.268 GMT [13020] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.340 s, total=0.536 s; sync files=11, longest=0.074 s, average=0.031 s; distance=16 kB, estimate=16 kB; lsn=0/1B44120, redo lsn=0/1B44120
+2026-08-05 08:26:00.358 GMT [14476] LOG:  database system is ready to accept connections
+2026-08-05 09:20:02.083 GMT [14476] LOG:  received fast shutdown request
+2026-08-05 09:20:02.129 GMT [2356] ERROR:  canceling statement due to user request
+2026-08-05 09:20:02.183 GMT [14476] LOG:  aborting any active transactions
+2026-08-05 09:20:02.190 GMT [20980] FATAL:  terminating connection due to administrator command
+2026-08-05 09:20:02.196 GMT [15008] FATAL:  terminating connection due to administrator command
+2026-08-05 09:20:02.198 GMT [14476] LOG:  background worker "logical replication launcher" (PID 2356) exited with exit code 1
+2026-08-05 09:20:02.199 GMT [14476] LOG:  server process (PID 19244) was terminated by exception 0xC000013A
+2026-08-05 09:20:02.199 GMT [14476] HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+2026-08-05 09:20:02.199 GMT [14476] LOG:  terminating any other active server processes
+2026-08-05 09:20:02.508 GMT [14476] LOG:  abnormal database system shutdown
+2026-08-05 09:20:02.516 GMT [14476] LOG:  database system is shut down
+2026-08-05 10:09:46.939 GMT [12244] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-05 10:09:46.956 GMT [12244] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-05 10:09:46.957 GMT [12244] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-05 10:09:47.166 GMT [14608] LOG:  database system was interrupted; last known up at 2026-08-05 08:26:00 GMT
+2026-08-05 10:09:47.771 GMT [14608] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-05 10:09:47.825 GMT [14608] LOG:  redo starts at 0/1B44198
+2026-08-05 10:09:47.825 GMT [14608] LOG:  invalid record length at 0/1B441D0: expected at least 24, got 0
+2026-08-05 10:09:47.825 GMT [14608] LOG:  redo done at 0/1B44198 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-08-05 10:09:47.893 GMT [14948] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-05 10:09:48.050 GMT [14948] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.034 s, total=0.192 s; sync files=2, longest=0.031 s, average=0.017 s; distance=0 kB, estimate=0 kB; lsn=0/1B441D0, redo lsn=0/1B441D0
+2026-08-05 10:09:48.195 GMT [12244] LOG:  database system is ready to accept connections
+2026-08-05 10:14:47.063 GMT [14948] LOG:  checkpoint starting: time
+2026-08-05 10:14:58.289 GMT [14948] LOG:  checkpoint complete: wrote 52 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=5.425 s, sync=5.225 s, total=11.226 s; sync files=50, longest=0.669 s, average=0.105 s; distance=201 kB, estimate=201 kB; lsn=0/1B768A8, redo lsn=0/1B76870
+2026-08-05 10:19:47.297 GMT [14948] LOG:  checkpoint starting: time
+2026-08-05 10:19:53.801 GMT [14948] LOG:  checkpoint complete: wrote 40 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.212 s, sync=1.964 s, total=6.504 s; sync files=34, longest=0.151 s, average=0.058 s; distance=70 kB, estimate=188 kB; lsn=0/1B883F0, redo lsn=0/1B883B8
+2026-08-05 10:24:47.813 GMT [14948] LOG:  checkpoint starting: time
+2026-08-05 10:24:48.332 GMT [14948] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.331 s, sync=0.088 s, total=0.519 s; sync files=4, longest=0.033 s, average=0.022 s; distance=0 kB, estimate=169 kB; lsn=0/1B88788, redo lsn=0/1B88750
+2026-08-05 10:29:47.341 GMT [14948] LOG:  checkpoint starting: time
+2026-08-05 10:29:48.828 GMT [14948] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.989 s, sync=0.309 s, total=1.488 s; sync files=10, longest=0.048 s, average=0.031 s; distance=16 kB, estimate=154 kB; lsn=0/1B8C878, redo lsn=0/1B8C840
+2026-08-05 10:43:49.233 GMT [12244] LOG:  received fast shutdown request
+2026-08-05 10:43:49.235 GMT [4676] ERROR:  canceling statement due to user request
+2026-08-05 10:43:49.342 GMT [12244] LOG:  aborting any active transactions
+2026-08-05 10:43:49.343 GMT [12244] LOG:  server process (PID 22048) was terminated by exception 0xC000013A
+2026-08-05 10:43:49.343 GMT [12244] HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+2026-08-05 10:43:49.343 GMT [12244] LOG:  terminating any other active server processes
+2026-08-05 10:43:49.344 GMT [20988] FATAL:  terminating connection due to administrator command
+2026-08-05 10:43:49.345 GMT [12244] LOG:  background worker "logical replication launcher" (PID 4676) exited with exit code 1
+2026-08-05 10:43:49.345 GMT [14908] FATAL:  terminating connection due to administrator command
+2026-08-05 10:43:49.553 GMT [12244] LOG:  abnormal database system shutdown
+2026-08-05 10:43:49.559 GMT [12244] LOG:  database system is shut down
+2026-08-05 10:54:05.219 GMT [20856] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-05 10:54:05.231 GMT [20856] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-05 10:54:05.232 GMT [20856] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-05 10:54:05.685 GMT [12088] LOG:  database system was interrupted; last known up at 2026-08-05 10:29:48 GMT
+2026-08-05 10:54:06.762 GMT [12088] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-05 10:54:06.831 GMT [12088] LOG:  redo starts at 0/1B8C840
+2026-08-05 10:54:06.831 GMT [12088] LOG:  invalid record length at 0/1B8C928: expected at least 24, got 0
+2026-08-05 10:54:06.831 GMT [12088] LOG:  redo done at 0/1B8C8F0 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-08-05 10:54:06.892 GMT [22056] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-05 10:54:07.061 GMT [22056] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.057 s, total=0.214 s; sync files=2, longest=0.055 s, average=0.028 s; distance=0 kB, estimate=0 kB; lsn=0/1B8C928, redo lsn=0/1B8C928
+2026-08-05 10:54:07.176 GMT [20856] LOG:  database system is ready to accept connections
+2026-08-05 10:59:06.146 GMT [22056] LOG:  checkpoint starting: time
+2026-08-05 10:59:08.509 GMT [22056] LOG:  checkpoint complete: wrote 18 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.871 s, sync=0.392 s, total=2.363 s; sync files=17, longest=0.042 s, average=0.024 s; distance=47 kB, estimate=47 kB; lsn=0/1B98918, redo lsn=0/1B988E0
+2026-08-05 13:34:06.731 GMT [22056] LOG:  checkpoint starting: time
+2026-08-05 13:34:07.498 GMT [22056] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.452 s, sync=0.125 s, total=0.797 s; sync files=5, longest=0.046 s, average=0.025 s; distance=4 kB, estimate=43 kB; lsn=0/1B99930, redo lsn=0/1B998F8
+2026-08-05 13:39:06.518 GMT [22056] LOG:  checkpoint starting: time
+2026-08-05 13:39:09.840 GMT [22056] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.731 s, sync=1.319 s, total=3.323 s; sync files=16, longest=0.202 s, average=0.083 s; distance=37 kB, estimate=42 kB; lsn=0/1BA3080, redo lsn=0/1BA3048
+2026-08-07 11:19:55.077 GMT [21860] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-07 11:19:55.081 GMT [21860] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-07 11:19:55.081 GMT [21860] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-07 11:19:55.327 GMT [19332] LOG:  database system was interrupted; last known up at 2026-08-05 13:39:09 GMT
+2026-08-07 11:20:02.401 GMT [19332] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-07 11:20:02.556 GMT [19332] LOG:  redo starts at 0/1BA3048
+2026-08-07 11:20:02.604 GMT [19332] LOG:  invalid record length at 0/1BA8568: expected at least 24, got 0
+2026-08-07 11:20:02.604 GMT [19332] LOG:  redo done at 0/1BA8530 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.04 s
+2026-08-07 11:20:02.653 GMT [19032] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-07 11:20:03.218 GMT [19032] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.457 s, total=0.601 s; sync files=14, longest=0.063 s, average=0.033 s; distance=21 kB, estimate=21 kB; lsn=0/1BA8568, redo lsn=0/1BA8568
+2026-08-07 11:20:03.306 GMT [21860] LOG:  database system is ready to accept connections
+2026-08-07 15:17:47.583 GMT [25088] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-07 15:17:47.596 GMT [25088] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-07 15:17:47.596 GMT [25088] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-07 15:17:47.872 GMT [25320] LOG:  database system was interrupted; last known up at 2026-08-07 11:20:03 GMT
+2026-08-07 15:17:57.924 GMT [25320] LOG:  syncing data directory (fsync), elapsed time: 10.05 s, current path: ./base/5/3602_vm
+2026-08-07 15:17:58.671 GMT [25320] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-07 15:17:58.782 GMT [25320] LOG:  redo starts at 0/1BA85E0
+2026-08-07 15:17:58.783 GMT [25320] LOG:  invalid record length at 0/1BA8618: expected at least 24, got 0
+2026-08-07 15:17:58.783 GMT [25320] LOG:  redo done at 0/1BA85E0 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-08-07 15:17:58.856 GMT [20568] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-07 15:17:59.011 GMT [20568] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.044 s, total=0.192 s; sync files=2, longest=0.043 s, average=0.022 s; distance=0 kB, estimate=0 kB; lsn=0/1BA8618, redo lsn=0/1BA8618
+2026-08-07 15:17:59.137 GMT [25088] LOG:  database system is ready to accept connections
+2026-08-07 15:18:06.816 GMT [23160] FATAL:  role "BLUEWAVE COMP" does not exist
+2026-08-07 15:27:58.027 GMT [20568] LOG:  checkpoint starting: time
+2026-08-07 15:27:58.822 GMT [20568] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.432 s, sync=0.126 s, total=0.796 s; sync files=5, longest=0.036 s, average=0.026 s; distance=1 kB, estimate=1 kB; lsn=0/1BA8C28, redo lsn=0/1BA8BF0
+2026-08-08 20:11:30.382 GMT [26616] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-08 20:11:30.399 GMT [26616] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-08 20:11:30.400 GMT [26616] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-08 20:11:30.817 GMT [19216] LOG:  database system was interrupted; last known up at 2026-08-07 15:27:58 GMT
+2026-08-08 20:11:40.006 GMT [19216] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-08 20:11:40.089 GMT [19216] LOG:  redo starts at 0/1BA8BF0
+2026-08-08 20:11:40.091 GMT [19216] LOG:  invalid record length at 0/1BA8CD8: expected at least 24, got 0
+2026-08-08 20:11:40.091 GMT [19216] LOG:  redo done at 0/1BA8CA0 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-08-08 20:11:40.147 GMT [25048] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-08 20:11:40.384 GMT [25048] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.047 s, total=0.273 s; sync files=2, longest=0.046 s, average=0.024 s; distance=0 kB, estimate=0 kB; lsn=0/1BA8CD8, redo lsn=0/1BA8CD8
+2026-08-08 20:11:40.512 GMT [26616] LOG:  database system is ready to accept connections
+2026-08-08 20:11:43.094 GMT [27640] FATAL:  role "BLUEWAVE COMP" does not exist
+2026-08-08 21:16:40.466 GMT [25048] LOG:  checkpoint starting: time
+2026-08-08 21:16:41.194 GMT [25048] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.431 s, sync=0.133 s, total=0.732 s; sync files=5, longest=0.051 s, average=0.027 s; distance=1 kB, estimate=1 kB; lsn=0/1BA9398, redo lsn=0/1BA9360
+2026-08-10 14:44:13.530 GMT [18192] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-10 14:44:13.543 GMT [18192] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-10 14:44:13.544 GMT [18192] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-10 14:44:13.804 GMT [18592] LOG:  database system was interrupted; last known up at 2026-08-08 21:16:41 GMT
+2026-08-10 14:44:23.823 GMT [18592] LOG:  syncing data directory (fsync), elapsed time: 10.01 s, current path: ./base/5/2840_vm
+2026-08-10 14:44:25.283 GMT [18592] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-10 14:44:25.400 GMT [18592] LOG:  redo starts at 0/1BA9360
+2026-08-10 14:44:25.401 GMT [18592] LOG:  invalid record length at 0/1BA9448: expected at least 24, got 0
+2026-08-10 14:44:25.401 GMT [18592] LOG:  redo done at 0/1BA9410 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-08-10 14:44:25.501 GMT [1608] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-10 14:44:25.690 GMT [1608] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.022 s, sync=0.044 s, total=0.269 s; sync files=2, longest=0.043 s, average=0.022 s; distance=0 kB, estimate=0 kB; lsn=0/1BA9448, redo lsn=0/1BA9448
+2026-08-10 14:44:25.856 GMT [18192] LOG:  database system is ready to accept connections
+2026-08-10 15:09:25.748 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 15:09:28.322 GMT [1608] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.727 s, sync=0.550 s, total=2.577 s; sync files=14, longest=0.100 s, average=0.040 s; distance=34 kB, estimate=34 kB; lsn=0/1BB1CD0, redo lsn=0/1BB1C98
+2026-08-10 15:14:25.358 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 15:14:26.025 GMT [1608] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.443 s, sync=0.124 s, total=0.667 s; sync files=5, longest=0.042 s, average=0.025 s; distance=19 kB, estimate=32 kB; lsn=0/1BB6C08, redo lsn=0/1BB6BD0
+2026-08-10 15:19:25.037 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 15:19:25.539 GMT [1608] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.326 s, sync=0.084 s, total=0.503 s; sync files=4, longest=0.029 s, average=0.021 s; distance=1 kB, estimate=29 kB; lsn=0/1BB7390, redo lsn=0/1BB7358
+2026-08-10 15:29:25.553 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 15:29:33.417 GMT [1608] LOG:  checkpoint complete: wrote 65 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=7.188 s, sync=0.575 s, total=7.865 s; sync files=52, longest=0.042 s, average=0.012 s; distance=244 kB, estimate=244 kB; lsn=0/1BF4768, redo lsn=0/1BF4730
+2026-08-10 15:29:39.597 GMT [8716] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-08-10 15:34:25.485 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 15:34:27.854 GMT [1608] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.546 s, sync=0.561 s, total=2.369 s; sync files=14, longest=0.096 s, average=0.041 s; distance=7 kB, estimate=221 kB; lsn=0/1BF66F8, redo lsn=0/1BF66C0
+2026-08-10 15:36:16.959 GMT [22872] ERROR:  update or delete on table "applicants" violates foreign key constraint "verification_logs_applicant_id_fkey" on table "verification_logs"
+2026-08-10 15:36:16.959 GMT [22872] DETAIL:  Key (id)=(0be9aaa8-0622-443b-9bfa-1dcc73bef5c4) is still referenced from table "verification_logs".
+2026-08-10 15:36:16.959 GMT [22872] STATEMENT:  DELETE FROM applicants WHERE applicants.id = '0be9aaa8-0622-443b-9bfa-1dcc73bef5c4'::uuid::UUID
+2026-08-10 15:39:25.871 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 15:39:26.479 GMT [1608] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.256 s, sync=0.212 s, total=0.608 s; sync files=3, longest=0.174 s, average=0.071 s; distance=3 kB, estimate=199 kB; lsn=0/1BF7670, redo lsn=0/1BF7638
+2026-08-10 15:41:27.864 GMT [26336] ERROR:  value too long for type character varying(32)
+2026-08-10 15:41:27.864 GMT [26336] STATEMENT:  UPDATE alembic_version SET version_num='0006_education_verification_extras' WHERE alembic_version.version_num = '0005_education_verification'
+2026-08-10 15:44:25.485 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 15:44:28.846 GMT [1608] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 1 WAL file(s) added, 0 removed, 0 recycled; write=1.677 s, sync=0.441 s, total=3.361 s; sync files=15, longest=0.045 s, average=0.030 s; distance=36 kB, estimate=183 kB; lsn=0/1C00820, redo lsn=0/1C007E8
+2026-08-10 15:44:43.234 GMT [22872] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-08-10 15:49:25.852 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 15:49:26.802 GMT [1608] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.659 s, sync=0.197 s, total=0.951 s; sync files=7, longest=0.042 s, average=0.029 s; distance=8 kB, estimate=165 kB; lsn=0/1C028C0, redo lsn=0/1C02888
+2026-08-10 15:59:25.824 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 15:59:27.738 GMT [1608] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.445 s, sync=0.343 s, total=1.917 s; sync files=13, longest=0.037 s, average=0.027 s; distance=21 kB, estimate=151 kB; lsn=0/1C07DD8, redo lsn=0/1C07DA0
+2026-08-10 16:19:25.848 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 16:19:27.291 GMT [1608] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.898 s, sync=0.334 s, total=1.521 s; sync files=9, longest=0.084 s, average=0.038 s; distance=9 kB, estimate=137 kB; lsn=0/1C0A480, redo lsn=0/1C0A448
+2026-08-10 16:28:28.740 GMT [24412] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-08-10 16:28:28.742 GMT [21948] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-08-10 16:34:25.332 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 16:34:26.411 GMT [1608] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.658 s, sync=0.320 s, total=1.083 s; sync files=7, longest=0.103 s, average=0.046 s; distance=10 kB, estimate=124 kB; lsn=0/1C0CD10, redo lsn=0/1C0CCD8
+2026-08-10 16:44:25.453 GMT [1608] LOG:  checkpoint starting: time
+2026-08-10 16:44:27.280 GMT [1608] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.275 s, sync=0.419 s, total=1.845 s; sync files=11, longest=0.086 s, average=0.039 s; distance=24 kB, estimate=114 kB; lsn=0/1C13060, redo lsn=0/1C13028
+2026-08-10 16:47:45.552 GMT [16468] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-08-10 16:47:45.555 GMT [9264] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-08-12 08:02:15.629 GMT [8664] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-12 08:02:15.638 GMT [8664] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-12 08:02:15.639 GMT [8664] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-12 08:02:16.107 GMT [17672] LOG:  database system was interrupted; last known up at 2026-08-10 16:44:27 GMT
+2026-08-12 08:02:26.130 GMT [17672] LOG:  syncing data directory (fsync), elapsed time: 10.02 s, current path: ./base/5/2837
+2026-08-12 08:02:27.389 GMT [17672] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-08-12 08:02:27.463 GMT [17672] LOG:  redo starts at 0/1C13028
+2026-08-12 08:02:27.463 GMT [17672] LOG:  invalid record length at 0/1C13110: expected at least 24, got 0
+2026-08-12 08:02:27.464 GMT [17672] LOG:  redo done at 0/1C130D8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-08-12 08:02:27.536 GMT [4448] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-08-12 08:02:27.726 GMT [4448] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.012 s, sync=0.085 s, total=0.226 s; sync files=2, longest=0.083 s, average=0.043 s; distance=0 kB, estimate=0 kB; lsn=0/1C13110, redo lsn=0/1C13110
+2026-08-12 08:02:27.879 GMT [8664] LOG:  database system is ready to accept connections
+2026-08-12 08:17:27.830 GMT [4448] LOG:  checkpoint starting: time
+2026-08-12 08:17:28.994 GMT [4448] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.649 s, sync=0.241 s, total=1.248 s; sync files=7, longest=0.060 s, average=0.035 s; distance=7 kB, estimate=7 kB; lsn=0/1C14FD8, redo lsn=0/1C14FA0
+2026-08-12 08:32:28.008 GMT [4448] LOG:  checkpoint starting: time
+2026-08-12 08:32:30.187 GMT [4448] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.511 s, sync=0.407 s, total=2.180 s; sync files=14, longest=0.036 s, average=0.029 s; distance=36 kB, estimate=36 kB; lsn=0/1C1E330, redo lsn=0/1C1E2F8
+2026-08-12 08:37:28.185 GMT [4448] LOG:  checkpoint starting: time
+2026-08-12 08:37:29.557 GMT [4448] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.094 s, sync=0.163 s, total=1.373 s; sync files=11, longest=0.033 s, average=0.015 s; distance=24 kB, estimate=35 kB; lsn=0/1C24588, redo lsn=0/1C24550
+2026-08-12 08:42:28.570 GMT [4448] LOG:  checkpoint starting: time
+2026-08-12 08:42:30.412 GMT [4448] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.432 s, sync=0.286 s, total=1.842 s; sync files=9, longest=0.067 s, average=0.032 s; distance=66 kB, estimate=66 kB; lsn=0/1C35130, redo lsn=0/1C350F8
+2026-08-12 08:52:28.418 GMT [4448] LOG:  checkpoint starting: time
+2026-08-12 08:52:32.041 GMT [4448] LOG:  checkpoint complete: wrote 24 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.482 s, sync=0.930 s, total=3.624 s; sync files=23, longest=0.153 s, average=0.041 s; distance=68 kB, estimate=68 kB; lsn=0/1C46350, redo lsn=0/1C46318
+2026-08-12 09:08:05.825 GMT [8664] LOG:  received fast shutdown request
+2026-08-12 09:08:05.829 GMT [8676] ERROR:  canceling statement due to user request
+2026-08-12 09:08:05.855 GMT [8664] LOG:  aborting any active transactions
+2026-08-12 09:08:05.859 GMT [5652] FATAL:  terminating connection due to administrator command
+2026-08-12 09:08:05.859 GMT [19576] FATAL:  terminating connection due to administrator command
+2026-08-12 09:08:05.860 GMT [1312] FATAL:  terminating connection due to administrator command
+2026-08-12 09:08:05.863 GMT [18944] FATAL:  terminating connection due to administrator command
+2026-08-12 09:08:05.939 GMT [8664] LOG:  background worker "logical replication launcher" (PID 8676) exited with exit code 1
+2026-08-12 09:08:06.433 GMT [4448] LOG:  shutting down
+2026-08-12 09:08:06.548 GMT [4448] LOG:  checkpoint starting: shutdown immediate
+2026-08-12 09:08:07.101 GMT [4448] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.023 s, sync=0.057 s, total=0.667 s; sync files=1, longest=0.057 s, average=0.057 s; distance=0 kB, estimate=61 kB; lsn=0/1C46400, redo lsn=0/1C46400
+2026-08-12 09:08:07.156 GMT [8664] LOG:  database system is shut down
+2026-08-12 09:19:53.143 GMT [22936] LOG:  starting PostgreSQL 16.14, compiled by Visual C++ build 1944, 64-bit
+2026-08-12 09:19:53.150 GMT [22936] LOG:  listening on IPv6 address "::1", port 5432
+2026-08-12 09:19:53.150 GMT [22936] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-08-12 09:19:53.356 GMT [22096] LOG:  database system was shut down at 2026-08-12 09:08:06 GMT
+2026-08-12 09:19:53.576 GMT [22936] LOG:  database system is ready to accept connections
+2026-08-12 09:24:53.358 GMT [23228] LOG:  checkpoint starting: time
+2026-08-12 09:24:53.502 GMT [23228] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.032 s, total=0.144 s; sync files=2, longest=0.031 s, average=0.016 s; distance=0 kB, estimate=0 kB; lsn=0/1C464E8, redo lsn=0/1C464B0

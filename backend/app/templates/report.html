@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @page {
+    size: A4;
+    margin: 2cm 2.2cm 2.6cm;
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font-size: 8pt;
+      color: #9ca3af;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a2e; font-size: 10.5pt; line-height: 1.45; }
+
+  .brand-bar { height: 5px; background: #4f46e5; border-radius: 3px; margin-bottom: 18px; }
+  .eyebrow { font-size: 8.5pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4f46e5; margin-bottom: 2px; }
+  .eyebrow-sub { font-size: 8pt; font-weight: 500; color: #6b7280; margin-bottom: 10px; }
+  h1 { font-size: 21pt; margin: 0 0 14px 0; }
+
+  .meta-grid { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin-bottom: 22px; }
+  .meta-cell { flex: 1 1 33%; padding: 10px 14px; border-right: 1px solid #e5e7eb; }
+  .meta-cell:last-child { border-right: none; }
+  .meta-label { font-size: 7.5pt; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #9ca3af; margin-bottom: 2px; }
+  .meta-value { font-size: 10pt; font-weight: 600; color: #1a1a2e; }
+
+  .score-box { display: flex; align-items: center; gap: 22px; padding: 18px 22px; border-radius: 10px;
+               background: {{ risk_bg }}; border: 1px solid {{ risk_border }}; margin-bottom: 14px; }
+  .score-number { font-size: 42pt; font-weight: 800; color: {{ risk_color }}; line-height: 1; }
+  .score-label { font-size: 12.5pt; font-weight: 700; color: {{ risk_color }}; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; }
+  .score-desc { color: #4b5563; font-size: 9.5pt; }
+
+  .meter { position: relative; height: 8px; border-radius: 4px; margin: 6px 0 4px 0;
+           background: linear-gradient(to right, #16a34a 0%, #16a34a 35%, #d97706 35%, #d97706 65%, #dc2626 65%, #dc2626 100%); }
+  .meter-marker { position: absolute; top: -3px; width: 3px; height: 14px; background: #1a1a2e; border-radius: 1px;
+                  left: {{ fraud_score | round(0) | int }}%; }
+  .meter-scale { display: flex; justify-content: space-between; font-size: 7.5pt; color: #9ca3af; margin-bottom: 24px; }
+
+  .section-title { font-size: 12.5pt; font-weight: 700; margin-top: 26px; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid #1a1a2e; break-after: avoid; break-inside: avoid; }
+
+  .meta-grid, .score-box { break-inside: avoid; }
+
+  .table-card { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 22px; break-inside: avoid; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  tr { break-inside: avoid; }
+  thead th { text-align: left; padding: 9px 14px; font-size: 7.5pt; font-weight: 700; text-transform: uppercase;
+             letter-spacing: 0.06em; color: #6b7280; background: #f9fafb; border-bottom: 1.5px solid #1a1a2e; }
+  thead th:first-child { border-top-left-radius: 7px; }
+  thead th:last-child { border-top-right-radius: 7px; }
+  td { padding: 9px 14px; font-size: 9.5pt; border-bottom: 1px solid #f0f0f2; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: #fafafb; }
+  .col-category { font-weight: 600; width: 26%; }
+  .col-weight { text-align: right; color: #6b7280; width: 10%; }
+  .col-bar { width: 28%; }
+  .col-score { text-align: right; width: 14%; }
+  .col-status { text-align: right; width: 22%; }
+  .bar-cell { display: flex; align-items: center; gap: 10px; }
+  .score-bar-track { display: block; width: 70px; height: 6px; border-radius: 3px; background: #e5e7eb; flex-shrink: 0; }
+  .score-bar-fill { display: block; height: 6px; border-radius: 3px; background: #4f46e5; }
+  .score-value { font-weight: 600; color: #1a1a2e; }
+  .status-pill { display: inline-block; font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 3px 10px; border-radius: 999px; }
+  .status-passed { background: #dcfce7; color: #16a34a; }
+  .status-flagged { background: #fef3c7; color: #d97706; }
+
+  .callout { background: #f5f5ff; border-left: 3px solid #4f46e5; border-radius: 0 6px 6px 0; padding: 12px 16px; font-size: 10pt; color: #1a1a2e; break-inside: avoid; }
+
+  .metric-row { display: flex; gap: 14px; margin-bottom: 22px; break-inside: avoid; }
+  .metric-box { flex: 1; padding: 14px 18px; border-radius: 10px; break-inside: avoid; }
+  .metric-number { font-size: 24pt; font-weight: 800; line-height: 1; }
+  .metric-label { font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+  .metric-desc { font-size: 8.5pt; color: #6b7280; margin-top: 2px; }
+
+  .skill-chip { display: inline-block; font-size: 8.5pt; font-weight: 600; padding: 3px 10px; border-radius: 999px; margin: 0 6px 6px 0; }
+  .skill-chip.matched { background: #dcfce7; color: #16a34a; }
+  .skill-chip.missing { background: #fef2f2; color: #dc2626; }
+
+  .flag { padding: 10px 14px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid; break-inside: avoid; }
+  .flag.high { background: #fef2f2; border-color: #dc2626; }
+  .flag.medium { background: #fffbeb; border-color: #d97706; }
+  .flag.low { background: #f0f9ff; border-color: #0284c7; }
+  .flag-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px; }
+  .flag-title { font-weight: 700; font-size: 10.5pt; }
+  .flag-category { text-transform: uppercase; font-size: 7.5pt; color: #6b7280; letter-spacing: .05em; margin-bottom: 2px; }
+  .severity-chip { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 999px; }
+  .flag.high .severity-chip { background: #dc2626; color: #fff; }
+  .flag.medium .severity-chip { background: #d97706; color: #fff; }
+  .flag.low .severity-chip { background: #0284c7; color: #fff; }
+  .flag-message { font-size: 9.5pt; color: #374151; }
+
+  .footer { margin-top: 32px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 8pt; color: #9ca3af; }
+</style>
+</head>
+<body>
+  <div class="brand-bar"></div>
+  <div class="eyebrow">Noviq Intelligence</div>
+  <div class="eyebrow-sub">AI Resume Fraud Detection System</div>
+  <h1>Resume Fraud Risk Report</h1>
+
+  <div class="meta-grid">
+    <div class="meta-cell">
+      <div class="meta-label">Candidate</div>
+      <div class="meta-value">{{ applicant_name }}</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Resume file</div>
+      <div class="meta-value">{{ filename }}</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Generated</div>
+      <div class="meta-value">{{ generated_at }}</div>
+    </div>
+  </div>
+
+  <div class="score-box">
+    <div class="score-number">{{ fraud_score | round(0) | int }}</div>
+    <div>
+      <div class="score-label">{{ risk_level }} risk</div>
+      <div class="score-desc">Fraud risk score out of 100 &middot; higher means more suspicious</div>
+    </div>
+  </div>
+  <div class="meter"><div class="meter-marker"></div></div>
+  <div class="meter-scale"><span>0 &ndash; Low</span><span>35 &ndash; Medium</span><span>65 &ndash; High</span><span>100</span></div>
+
+  <div class="metric-row">
+    {% set ats_color = "#16a34a" if ats_score >= 70 else ("#d97706" if ats_score >= 40 else "#dc2626") %}
+    {% set ats_bg = "#f0fdf4" if ats_score >= 70 else ("#fffbeb" if ats_score >= 40 else "#fef2f2") %}
+    <div class="metric-box" style="background: {{ ats_bg }};">
+      <div class="metric-number" style="color: {{ ats_color }};">{{ ats_score | round(0) | int }}</div>
+      <div class="metric-label" style="color: {{ ats_color }};">ATS Compatibility</div>
+      <div class="metric-desc">Out of 100 &middot; higher means easier for an ATS to parse</div>
+    </div>
+    {% set ai_color = "#dc2626" if ai_score >= 65 else ("#d97706" if ai_score >= 35 else "#16a34a") %}
+    {% set ai_bg = "#fef2f2" if ai_score >= 65 else ("#fffbeb" if ai_score >= 35 else "#f0fdf4") %}
+    <div class="metric-box" style="background: {{ ai_bg }};">
+      <div class="metric-number" style="color: {{ ai_color }};">{{ ai_score | round(0) | int }}</div>
+      <div class="metric-label" style="color: {{ ai_color }};">AI-Content Likelihood</div>
+      <div class="metric-desc">Out of 100 &middot; higher means more likely AI-generated</div>
+    </div>
+  </div>
+
+  <div class="section-title">Score breakdown</div>
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th class="col-weight">Weight</th>
+          <th class="col-bar">Visual risk distribution</th>
+          <th class="col-score">Score (0-100)</th>
+          <th class="col-status">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for label, weight, value in [
+          ("Experience Verification", "15%", scores.experience_score),
+          ("Education Background", "15%", scores.education_score),
+          ("Skills Authenticity", "20%", scores.skill_score),
+          ("Keyword Stuffing", "10%", scores.keyword_stuffing_score),
+          ("Formatting Structure", "10%", scores.formatting_score),
+          ("Timeline Consistency", "15%", scores.timeline_score),
+          ("AI-Generated Text", "10%", scores.ai_score),
+          ("Duplicate Submissions", "5%", scores.duplicate_score),
+        ] %}
+        <tr>
+          <td class="col-category">{{ label }}</td>
+          <td class="col-weight">{{ weight }}</td>
+          <td class="col-bar">
+            <div class="bar-cell">
+              <span class="score-bar-track"><span class="score-bar-fill" style="width: {{ value }}%;"></span></span>
+            </div>
+          </td>
+          <td class="col-score"><span class="score-value">{{ "%.1f"|format(value) }}</span></td>
+          <td class="col-status">
+            {% if value > 0 %}
+              <span class="status-pill status-flagged">Flagged</span>
+            {% else %}
+              <span class="status-pill status-passed">Passed</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">Recommendation</div>
+  <div class="callout">{{ recommendation }}</div>
+
+  {% if job_match %}
+  <div class="section-title">Job match</div>
+  <div class="table-card" style="padding: 16px 18px;">
+    <p style="margin: 0 0 10px 0;">
+      <strong>{{ job_match.match_score | round(0) | int }}% match</strong>
+      &middot; {{ job_match_recommendation }}
+      {% if job_match.job_description %}&middot; {{ job_match.job_description.title }}{% endif %}
+    </p>
+    {% if job_match.matched_skills %}
+    <p style="margin: 0 0 4px 0; font-size: 8.5pt; font-weight: 700; text-transform: uppercase; color: #6b7280;">Matched skills</p>
+    <p style="margin: 0 0 10px 0;">
+      {% for skill in job_match.matched_skills %}<span class="skill-chip matched">{{ skill }}</span>{% endfor %}
+    </p>
+    {% endif %}
+    {% if job_match.missing_skills %}
+    <p style="margin: 0 0 4px 0; font-size: 8.5pt; font-weight: 700; text-transform: uppercase; color: #6b7280;">Missing skills</p>
+    <p style="margin: 0;">
+      {% for skill in job_match.missing_skills %}<span class="skill-chip missing">{{ skill }}</span>{% endfor %}
+    </p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="section-title">Detected issues ({{ flags | length }})</div>
+  {% if flags %}
+    {% for flag in flags %}
+    <div class="flag {{ flag.severity }}">
+      <div class="flag-category">{{ flag.category.replace('_', ' ') }}</div>
+      <div class="flag-top">
+        <div class="flag-title">{{ flag.title }}</div>
+        <div class="severity-chip">{{ flag.severity }}</div>
+      </div>
+      <div class="flag-message">{{ flag.message }}</div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p>No issues were detected by the automated fraud-detection engine.</p>
+  {% endif %}
+
+  <div class="footer">
+    This report was generated automatically by Noviq Intelligence (AI Resume Fraud Detection System). Findings are
+    heuristic risk signals intended to assist &mdash; not replace &mdash; human judgement and standard
+    background/reference verification.
+  </div>
+</body>
+</html>

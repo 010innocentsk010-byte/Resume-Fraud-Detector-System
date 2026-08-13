@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  --brand: #4f46e5;
+  --brand-foreground: #ffffff;
+
+  /* Status palette (fixed — never themed; same steps in light/dark). Source: dataviz skill reference palette. */
+  --risk-low: #0ca30c;
+  --risk-low-bg: #eafbea;
+  --risk-medium: #fab219;
+  --risk-medium-bg: #fef6e6;
+  --risk-high: #d03b3b;
+  --risk-high-bg: #fdecec;
+
+  /* Categorical palette (fixed order, light steps) — used for flag-category charts. */
+  --cat-1: #2a78d6; /* blue */
+  --cat-2: #eb6834; /* orange */
+  --cat-3: #1baf7a; /* aqua */
+  --cat-4: #eda100; /* yellow */
+  --cat-5: #e87ba4; /* magenta */
+  --cat-6: #008300; /* green */
+  --cat-7: #4a3aa7; /* violet */
+  --cat-8: #e34948; /* red */
+
+  --chart-grid: #e1e0d9;
+  --chart-axis: #c3c2b7;
+  --chart-ink-muted: #898781;
+}
+
+.dark {
+  --background: #0b0f19;
+  --surface: #131826;
+  --surface-muted: #1a2133;
+  --foreground: #e5e9f0;
+  --muted: #8a93a6;
+  --border: #232b40;
+
+  --brand: #818cf8;
+  --brand-foreground: #0b0f19;
+
+  --risk-low: #0ca30c;
+  --risk-low-bg: rgba(12, 163, 12, 0.12);
+  --risk-medium: #fab219;
+  --risk-medium-bg: rgba(250, 178, 25, 0.12);
+  --risk-high: #d03b3b;
+  --risk-high-bg: rgba(208, 59, 59, 0.14);
+
+  /* Categorical palette, dark steps. */
+  --cat-1: #3987e5;
+  --cat-2: #d95926;
+  --cat-3: #199e70;
+  --cat-4: #c98500;
+  --cat-5: #d55181;
+  --cat-6: #008300;
+  --cat-7: #9085e9;
+  --cat-8: #e66767;
+
+  --chart-grid: #2c2c2a;
+  --chart-axis: #383835;
+  --chart-ink-muted: #898781;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-risk-low: var(--risk-low);
+  --color-risk-low-bg: var(--risk-low-bg);
+  --color-risk-medium: var(--risk-medium);
+  --color-risk-medium-bg: var(--risk-medium-bg);
+  --color-risk-high: var(--risk-high);
+  --color-risk-high-bg: var(--risk-high-bg);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--brand);
+  color: var(--brand-foreground);
+}
+
+/* Subtle custom scrollbar so long candidate/flag lists feel intentional. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
