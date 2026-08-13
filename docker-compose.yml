@@ -17,10 +17,10 @@ services:
       retries: 10
 
   backend:
-    build: ./backend
+    build: ./noviq-backend
     restart: unless-stopped
     env_file:
-      - ./backend/.env
+      - ./noviq-backend/.env
     environment:
       DATABASE_URL: postgresql+psycopg2://resumefraud:resumefraud@db:5432/resumefraud
     ports:
@@ -32,10 +32,10 @@ services:
         condition: service_healthy
 
   frontend:
-    build: ./frontend
+    build: ./noviq-frontend
     restart: unless-stopped
     env_file:
-      - ./frontend/.env.local
+      - ./noviq-frontend/.env.local
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
     ports:

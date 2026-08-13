@@ -1,18 +1,19 @@
 # --- Backend (Python) ---
-backend/.venv/
-backend/__pycache__/
-backend/**/__pycache__/
-backend/.pytest_cache/
-backend/storage/
-backend/.env
+noviq-backend/.venv/
+noviq-backend/__pycache__/
+noviq-backend/**/__pycache__/
+noviq-backend/.pytest_cache/
+noviq-backend/storage/
+noviq-backend/.env
+noviq-backend/.pgdata/
 *.pyc
 
 # --- Frontend (Node) ---
-frontend/node_modules/
-frontend/.next/
-frontend/out/
-frontend/.env.local
-frontend/.env
+noviq-frontend/node_modules/
+noviq-frontend/.next/
+noviq-frontend/out/
+noviq-frontend/.env.local
+noviq-frontend/.env
 
 # --- General ---
 .DS_Store

@@ -11,8 +11,8 @@ explanations, and gives recruiters a dashboard and downloadable PDF reports.
 
 ```
 .
-├── backend/     FastAPI + SQLAlchemy + PostgreSQL + spaCy / Sentence-Transformers
-├── frontend/    Next.js 14 (App Router) + TypeScript + Tailwind CSS + Framer Motion
+├── noviq-backend/     FastAPI + SQLAlchemy + PostgreSQL + spaCy / Sentence-Transformers
+├── noviq-frontend/    Next.js 14 (App Router) + TypeScript + Tailwind CSS + Framer Motion
 └── docker-compose.yml
 ```
 
@@ -31,8 +31,8 @@ explanations, and gives recruiters a dashboard and downloadable PDF reports.
 ## Quick start (Docker)
 
 ```bash
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env.local
+cp noviq-backend/.env.example noviq-backend/.env
+cp noviq-frontend/.env.example noviq-frontend/.env.local
 docker compose up --build
 ```
 
@@ -45,7 +45,7 @@ docker compose up --build
 ### Backend
 
 ```bash
-cd backend
+cd noviq-backend
 python -m venv .venv
 .venv\Scripts\activate          # Windows
 pip install -r requirements.txt
@@ -58,18 +58,18 @@ uvicorn app.main:app --reload
 ### Frontend
 
 ```bash
-cd frontend
+cd noviq-frontend
 npm install
 copy .env.example .env.local
 npm run dev
 ```
 
-Default seeded admin account (created by `backend/app/db/seed.py`, run with
+Default seeded admin account (created by `noviq-backend/app/db/seed.py`, run with
 `python -m app.db.seed`): `admin@example.com` / `ChangeMe123!`
 
 ## Project layout
 
-See `backend/README.md` and `frontend/README.md` for module-level detail, and
+See `noviq-backend/README.md` and `noviq-frontend/README.md` for module-level detail, and
 `docs/API.md` for the endpoint reference (also available live via Swagger/OpenAPI at
 `/api/docs` once the backend is running).
 
@@ -77,15 +77,15 @@ See `backend/README.md` and `frontend/README.md` for module-level detail, and
 
 | Module                  | Location                                              |
 |--------------------------|--------------------------------------------------------|
-| Resume parsing           | `backend/app/services/resume_parser.py`                |
-| Timeline analysis        | `backend/app/services/fraud/timeline.py`                |
-| Education analysis       | `backend/app/services/fraud/education.py`                |
-| Skills analysis          | `backend/app/services/fraud/skills.py`                  |
-| Keyword stuffing         | `backend/app/services/fraud/keyword_stuffing.py`          |
-| AI-generated text        | `backend/app/services/fraud/ai_text_detection.py`          |
-| Duplicate detection       | `backend/app/services/fraud/duplicate_detection.py`        |
-| Risk score aggregation   | `backend/app/services/fraud/risk_score.py`                |
-| Report generation        | `backend/app/services/report_generator.py`                |
+| Resume parsing           | `noviq-backend/app/services/resume_parser.py`                |
+| Timeline analysis        | `noviq-backend/app/services/fraud/timeline.py`                |
+| Education analysis       | `noviq-backend/app/services/fraud/education.py`                |
+| Skills analysis          | `noviq-backend/app/services/fraud/skills.py`                  |
+| Keyword stuffing         | `noviq-backend/app/services/fraud/keyword_stuffing.py`          |
+| AI-generated text        | `noviq-backend/app/services/fraud/ai_text_detection.py`          |
+| Duplicate detection       | `noviq-backend/app/services/fraud/duplicate_detection.py`        |
+| Risk score aggregation   | `noviq-backend/app/services/fraud/risk_score.py`                |
+| Report generation        | `noviq-backend/app/services/report_generator.py`                |
 
 ## License
 
