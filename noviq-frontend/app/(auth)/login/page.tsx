@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { LogIn } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
@@ -13,10 +14,17 @@ import { ErrorBanner } from "@/components/ui/ErrorBanner";
 
 export default function LoginPage() {
   const { login } = useAuth();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Warm the dashboard route while the user is filling in credentials, so the
+  // post-login redirect doesn't wait on an on-demand route compile/chunk fetch.
+  useEffect(() => {
+    router.prefetch("/dashboard");
+  }, [router]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

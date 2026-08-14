@@ -18,7 +18,8 @@
       "PowerShell(& \"C:\\\\Program Files\\\\PostgreSQL\\\\16\\\\bin\\\\psql.exe\" -U resumefraud -d resumefraud -h 127.0.0.1 -w -c \"SELECT version_num FROM alembic_version;\" 2>&1)",
       "PowerShell(Get-CimInstance Win32_Process -Filter \"ProcessId=17752\")",
       "PowerShell(Stop-Service -Name \"postgresql-x64-16\" -Force)",
-      "PowerShell(net stop postgresql-x64-16 2>&1)"
+      "PowerShell(net stop postgresql-x64-16 2>&1)",
+      "Bash(npx tsc *)"
     ]
   }
 }

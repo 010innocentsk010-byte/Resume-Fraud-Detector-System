@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { AmbientBackground } from "@/components/layout/AmbientBackground";
 import { Spinner } from "@/components/ui/Spinner";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -26,9 +27,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div className="flex min-h-screen flex-1 bg-background">
+    <div className="relative flex min-h-screen flex-1 bg-background">
+      <AmbientBackground subtle />
       <Sidebar />
-      <div className="flex min-w-0 flex-1 flex-col pb-16 lg:pb-0">{children}</div>
+      <div className="relative z-10 flex min-w-0 flex-1 flex-col pb-16 lg:pb-0">{children}</div>
       <MobileNav />
     </div>
   );

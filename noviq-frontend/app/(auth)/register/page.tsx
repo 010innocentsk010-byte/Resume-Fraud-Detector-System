@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { UserPlus } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
@@ -13,9 +14,14 @@ import { ErrorBanner } from "@/components/ui/ErrorBanner";
 
 export default function RegisterPage() {
   const { register } = useAuth();
+  const router = useRouter();
   const [form, setForm] = useState({ name: "", email: "", organization: "", password: "" });
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    router.prefetch("/dashboard");
+  }, [router]);
 
   function update<K extends keyof typeof form>(key: K, value: string) {
     setForm((f) => ({ ...f, [key]: value }));

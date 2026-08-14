@@ -19,7 +19,7 @@ export function Sidebar() {
   const { user } = useAuth();
 
   return (
-    <aside className="hidden w-60 shrink-0 flex-col border-r border-border bg-surface px-3 py-5 lg:flex">
+    <aside className="glass-surface relative z-10 hidden w-60 shrink-0 flex-col rounded-none border-y-0 border-l-0 px-3 py-5 lg:flex">
       <Link href="/dashboard" className="mb-6 flex flex-col gap-1.5 px-2">
         <div className="w-fit rounded-md bg-white p-1.5">
           <Image src="/logo.jpeg" alt="Noviq Intelligence" width={1280} height={566} className="h-9 w-auto" priority />
@@ -66,11 +66,6 @@ export function Sidebar() {
           </Link>
         )}
       </nav>
-
-      <div className="rounded-lg bg-surface-muted p-3 text-[11px] leading-relaxed text-muted">
-        Fraud signals are heuristic risk indicators to guide screening — always confirm high-risk
-        findings with the candidate directly.
-      </div>
     </aside>
   );
 }

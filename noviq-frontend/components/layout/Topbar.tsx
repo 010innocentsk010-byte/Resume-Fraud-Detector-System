@@ -9,7 +9,7 @@ export function Topbar({ title, description }: { title: string; description?: st
   const { user, logout } = useAuth();
 
   return (
-    <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-border bg-surface/80 px-4 py-4 backdrop-blur sm:px-6">
+    <header className="glass-surface sticky top-0 z-10 flex items-center justify-between gap-4 rounded-none border-x-0 border-t-0 px-4 py-4 sm:px-6">
       <div>
         <h1 className="text-lg font-semibold text-foreground">{title}</h1>
         {description && <p className="mt-0.5 text-sm text-muted">{description}</p>}

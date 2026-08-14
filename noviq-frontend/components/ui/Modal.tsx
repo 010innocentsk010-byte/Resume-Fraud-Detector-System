@@ -39,7 +39,7 @@ export function Modal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="relative w-full max-w-md rounded-xl border border-border bg-surface p-6 shadow-xl"
+            className="glass-surface relative w-full max-w-md rounded-xl p-6"
           >
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-base font-semibold text-foreground">{title}</h2>

@@ -12,6 +12,9 @@
 
   --brand: #4f46e5;
   --brand-foreground: #ffffff;
+  --ambient-1: #6366f1;
+  --ambient-2: #22d3ee;
+  --ambient-3: #d946ef;
 
   /* Status palette (fixed — never themed; same steps in light/dark). Source: dataviz skill reference palette. */
   --risk-low: #0ca30c;
@@ -46,6 +49,9 @@
 
   --brand: #818cf8;
   --brand-foreground: #0b0f19;
+  --ambient-1: #6366f1;
+  --ambient-2: #22d3ee;
+  --ambient-3: #c026d3;
 
   --risk-low: #0ca30c;
   --risk-low-bg: rgba(12, 163, 12, 0.12);
@@ -108,6 +114,91 @@ body {
 ::selection {
   background: var(--brand);
   color: var(--brand-foreground);
+}
+
+/* Ambient glow — fixed, blurred color blobs sitting behind glass surfaces.
+   transform/opacity-only animation keeps this cheap regardless of page weight. */
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ambient-glow > span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  will-change: transform;
+}
+.ambient-glow > span:nth-child(1) {
+  top: -18%;
+  left: -12%;
+  width: 55vmax;
+  height: 55vmax;
+  background: var(--ambient-1);
+  opacity: 0.35;
+  animation: ambient-drift-a 26s ease-in-out infinite alternate;
+}
+.ambient-glow > span:nth-child(2) {
+  bottom: -22%;
+  right: -14%;
+  width: 50vmax;
+  height: 50vmax;
+  background: var(--ambient-2);
+  opacity: 0.28;
+  animation: ambient-drift-b 32s ease-in-out infinite alternate;
+}
+.ambient-glow > span:nth-child(3) {
+  top: 35%;
+  left: 45%;
+  width: 38vmax;
+  height: 38vmax;
+  background: var(--ambient-3);
+  opacity: 0.22;
+  animation: ambient-drift-c 24s ease-in-out infinite alternate;
+}
+.ambient-glow--subtle > span {
+  opacity: 0.14;
+  filter: blur(130px);
+}
+.ambient-glow--subtle > span:nth-child(3) {
+  opacity: 0.1;
+}
+@keyframes ambient-drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(7%, 9%) scale(1.1); }
+}
+@keyframes ambient-drift-b {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-8%, -6%) scale(1.08); }
+}
+@keyframes ambient-drift-c {
+  from { transform: translate(-6%, 4%) scale(1); }
+  to { transform: translate(4%, -8%) scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-glow > span {
+    animation: none;
+  }
+}
+
+/* Glass surface — shared premium look for cards, panels and nav chrome. */
+.glass-surface {
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in srgb, white 8%, transparent),
+    0 1px 2px 0 rgba(0, 0, 0, 0.04),
+    0 12px 32px -12px rgba(0, 0, 0, 0.18);
+}
+.dark .glass-surface {
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in srgb, white 5%, transparent),
+    0 1px 2px 0 rgba(0, 0, 0, 0.3),
+    0 16px 40px -12px rgba(0, 0, 0, 0.5);
 }
 
 /* Subtle custom scrollbar so long candidate/flag lists feel intentional. */

@@ -18,7 +18,7 @@ export function MobileNav() {
   const items = user?.role === "admin" ? [...NAV_ITEMS, { href: "/admin", label: "Admin", icon: ShieldQuestion }] : NAV_ITEMS;
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-10 flex border-t border-border bg-surface/95 backdrop-blur lg:hidden">
+    <nav className="glass-surface fixed inset-x-0 bottom-0 z-10 flex rounded-none border-x-0 border-b-0 lg:hidden">
       {items.map((item) => {
         const active = pathname === item.href || pathname.startsWith(item.href + "/");
         const Icon = item.icon;
