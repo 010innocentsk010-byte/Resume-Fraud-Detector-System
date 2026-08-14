@@ -1,4 +1,6 @@
-fastapi==0.115.0
+fastapi==0.141.1
+starlette==1.6.0
+anyio==4.14.2
 uvicorn[standard]==0.30.6
 sqlalchemy==2.0.35
 alembic==1.13.2
