@@ -40,6 +40,7 @@ class Resume(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     parsed_data: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     text_fingerprint: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
 
-    uploaded_by_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
+    # NULL = uploaded via a public job-posting application, no recruiter involved.
+    uploaded_by_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
 
     analyses: Mapped[list["Analysis"]] = relationship(back_populates="resume", cascade="all, delete-orphan")

@@ -48,7 +48,8 @@ class JobMatchRead(BaseModel):
 
     id: uuid.UUID
     resume_id: uuid.UUID
-    job_description_id: uuid.UUID
+    job_description_id: uuid.UUID | None = None
+    job_posting_id: uuid.UUID | None = None
     match_score: float
     matched_skills: list[str]
     missing_skills: list[str]

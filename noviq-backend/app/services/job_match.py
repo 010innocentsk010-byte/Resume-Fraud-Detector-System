@@ -7,6 +7,7 @@ app.services.fraud.duplicate_detection).
 """
 from dataclasses import dataclass, field
 
+from app.models.analysis import RiskLevel
 from app.models.resume import Resume
 from app.services.fraud.common import clamp
 from app.services.nlp import get_sentence_transformer
@@ -25,6 +26,14 @@ def build_match_recommendation(match_score: float) -> str:
     if match_score >= MODERATE_MATCH_THRESHOLD:
         return "Moderate Candidate"
     return "Weak Candidate"
+
+
+def is_qualified(match_score: float, risk_level: RiskLevel) -> bool:
+    """Auto-qualification rule for the public apply flow: at least a
+    Moderate-or-better job match, and fraud risk that isn't High. Both
+    signals have to clear — a strong match with High fraud risk still
+    doesn't qualify, and vice versa."""
+    return match_score >= MODERATE_MATCH_THRESHOLD and risk_level != RiskLevel.HIGH
 
 
 def compute_skill_overlap(resume_skills: list[str], jd_skills: list[str]) -> tuple[float, list[str], list[str]]:

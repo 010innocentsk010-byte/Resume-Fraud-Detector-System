@@ -2,24 +2,22 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, ShieldQuestion, UploadCloud, Users } from "lucide-react";
+import { Briefcase, LayoutDashboard, UploadCloud, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@/lib/auth-context";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Home", icon: LayoutDashboard },
   { href: "/candidates", label: "Candidates", icon: Users },
+  { href: "/job-postings", label: "Jobs", icon: Briefcase },
   { href: "/upload", label: "Upload", icon: UploadCloud },
 ];
 
 export function MobileNav() {
   const pathname = usePathname();
-  const { user } = useAuth();
-  const items = user?.role === "admin" ? [...NAV_ITEMS, { href: "/admin", label: "Admin", icon: ShieldQuestion }] : NAV_ITEMS;
 
   return (
     <nav className="glass-surface fixed inset-x-0 bottom-0 z-10 flex rounded-none border-x-0 border-b-0 lg:hidden">
-      {items.map((item) => {
+      {NAV_ITEMS.map((item) => {
         const active = pathname === item.href || pathname.startsWith(item.href + "/");
         const Icon = item.icon;
         return (

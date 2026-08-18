@@ -19,7 +19,14 @@
       "PowerShell(Get-CimInstance Win32_Process -Filter \"ProcessId=17752\")",
       "PowerShell(Stop-Service -Name \"postgresql-x64-16\" -Force)",
       "PowerShell(net stop postgresql-x64-16 2>&1)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(timeout 20 python -c ' *)",
+      "Bash(curl -s -o /dev/null -w \"backend:%{http_code}\\\\n\" --max-time 2 http://localhost:8000/api/health)",
+      "Bash(curl -s -o /dev/null -w \"frontend:%{http_code}\\\\n\" --max-time 2 http://localhost:3000)",
+      "Bash(timeout 30 bash -c 'until curl -sf http://localhost:8000/api/health >/dev/null 2>&1; do sleep 1; done')",
+      "Read(//tmp/**)",
+      "Bash(timeout 45 bash -c 'until curl -sf http://localhost:3000 >/dev/null 2>&1; do sleep 1; done')",
+      "Bash(curl -s -o /dev/null -w \"port3000:%{http_code}\\\\n\" --max-time 2 http://localhost:3000)"
     ]
   }
 }

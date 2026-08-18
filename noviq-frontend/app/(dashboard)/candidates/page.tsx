@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { CheckSquare, Plus, Search, Trash2, UserRound, Users, X } from "lucide-react";
+import { ArrowRight, Briefcase, CheckSquare, Search, Trash2, UserRound, Users, X } from "lucide-react";
 import { Topbar } from "@/components/layout/Topbar";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -14,14 +14,12 @@ import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { RiskBadge } from "@/components/ui/Badge";
 import { Modal } from "@/components/ui/Modal";
-import { AddApplicantForm } from "@/components/candidates/AddApplicantForm";
 import { applicantsApi, ApiError } from "@/lib/api";
 import { useAsync } from "@/lib/hooks";
 import { formatDate, initials, riskLevelFromScore } from "@/lib/utils";
 
 export default function CandidatesPage() {
   const [query, setQuery] = useState("");
-  const [modalOpen, setModalOpen] = useState(false);
   const [selectMode, setSelectMode] = useState(false);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -93,10 +91,6 @@ export default function CandidatesPage() {
               {selectMode ? <X className="size-4" /> : <CheckSquare className="size-4" />}
               {selectMode ? "Cancel" : "Select"}
             </Button>
-            <Button onClick={() => setModalOpen(true)}>
-              <Plus className="size-4" />
-              Add candidate
-            </Button>
           </div>
         </div>
 
@@ -108,11 +102,11 @@ export default function CandidatesPage() {
             <EmptyState
               icon={Users}
               title="No candidates yet"
-              description="Add your first candidate to start uploading and screening resumes."
+              description="Candidates show up here once they apply through one of your job postings' apply links."
               action={
-                <Button onClick={() => setModalOpen(true)}>
-                  <Plus className="size-4" />
-                  Add candidate
+                <Button onClick={() => router.push("/job-postings")}>
+                  <Briefcase className="size-4" />
+                  Go to job postings
                 </Button>
               }
             />
@@ -140,19 +134,22 @@ export default function CandidatesPage() {
                     <th className="px-5 py-3">Resumes</th>
                     <th className="px-5 py-3">Latest fraud score</th>
                     <th className="px-5 py-3">Added</th>
+                    <th className="px-5 py-3" />
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((applicant, i) => (
+                  {data.map((applicant, i) => {
+                    const detailsHref = applicant.latest_resume_id
+                      ? `/candidates/${applicant.id}/resumes/${applicant.latest_resume_id}`
+                      : `/candidates/${applicant.id}`;
+                    return (
                     <motion.tr
                       key={applicant.id}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: i * 0.02 }}
                       className="cursor-pointer border-b border-border last:border-0 hover:bg-surface-muted"
-                      onClick={() =>
-                        selectMode ? toggleOne(applicant.id) : router.push(`/candidates/${applicant.id}`)
-                      }
+                      onClick={() => (selectMode ? toggleOne(applicant.id) : router.push(detailsHref))}
                     >
                       {selectMode && (
                         <td className="px-5 py-3.5" onClick={(e) => e.stopPropagation()}>
@@ -167,7 +164,7 @@ export default function CandidatesPage() {
                       )}
                       <td className="px-5 py-3.5">
                         <Link
-                          href={`/candidates/${applicant.id}`}
+                          href={detailsHref}
                           className="flex items-center gap-3"
                           onClick={(e) => (selectMode ? e.preventDefault() : e.stopPropagation())}
                         >
@@ -201,24 +198,24 @@ export default function CandidatesPage() {
                         )}
                       </td>
                       <td className="px-5 py-3.5 text-muted">{formatDate(applicant.created_at)}</td>
+                      <td className="px-5 py-3.5" onClick={(e) => e.stopPropagation()}>
+                        <Link
+                          href={detailsHref}
+                          className="inline-flex items-center gap-0.5 text-xs font-medium text-brand hover:underline"
+                        >
+                          View details
+                          <ArrowRight className="size-3" />
+                        </Link>
+                      </td>
                     </motion.tr>
-                  ))}
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
           </Card>
         )}
       </div>
-
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Add a candidate">
-        <AddApplicantForm
-          onCreated={(applicant) => {
-            setModalOpen(false);
-            refetch();
-            router.push(`/candidates/${applicant.id}`);
-          }}
-        />
-      </Modal>
 
       <Modal open={confirmOpen} onClose={() => setConfirmOpen(false)} title="Delete candidate(s)?">
         <div className="space-y-4">

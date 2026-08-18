@@ -3,20 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, ShieldQuestion, Target, UploadCloud, Users } from "lucide-react";
+import { Briefcase, LayoutDashboard, Target, UploadCloud, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@/lib/auth-context";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/candidates", label: "Candidates", icon: Users },
+  { href: "/job-postings", label: "Job postings", icon: Briefcase },
   { href: "/candidates/rank", label: "Rank candidates", icon: Target },
   { href: "/upload", label: "Upload resume", icon: UploadCloud },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { user } = useAuth();
 
   return (
     <aside className="glass-surface relative z-10 hidden w-60 shrink-0 flex-col rounded-none border-y-0 border-l-0 px-3 py-5 lg:flex">
@@ -50,21 +49,6 @@ export function Sidebar() {
             </Link>
           );
         })}
-
-        {user?.role === "admin" && (
-          <Link
-            href="/admin"
-            className={cn(
-              "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-              pathname.startsWith("/admin")
-                ? "bg-brand/10 text-brand"
-                : "text-muted hover:bg-surface-muted hover:text-foreground"
-            )}
-          >
-            <ShieldQuestion className="size-4" />
-            Admin
-          </Link>
-        )}
       </nav>
     </aside>
   );

@@ -1,17 +1,22 @@
 import type {
   Analysis,
   Applicant,
+  Application,
+  ApplicationStatus,
   CandidateRankingEntry,
   DashboardAnalytics,
   DashboardSummary,
   JobDescription,
   JobMatch,
+  JobPosting,
+  JobPostingStatus,
+  PublicApplyResponse,
+  PublicJobPosting,
   ReportRead,
   ResumeDetail,
   RewriteSuggestionsRead,
   TokenPair,
   User,
-  UserRole,
 } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
@@ -135,7 +140,7 @@ export const authApi = {
       raw: true,
     });
   },
-  register(payload: { name: string; email: string; password: string; organization?: string; role?: UserRole }) {
+  register(payload: { name: string; email: string; password: string; organization?: string }) {
     return request<User>("/auth/register", { method: "POST", skipAuth: true, body: payload });
   },
   logout(refreshToken: string) {
@@ -178,6 +183,15 @@ export const resumesApi = {
       raw: true,
       body: form,
     });
+  },
+  uploadDirect(payload: { name: string; email: string; phone?: string; field_of_study?: string; file: File }) {
+    const form = new FormData();
+    form.append("name", payload.name);
+    form.append("email", payload.email);
+    if (payload.phone) form.append("phone", payload.phone);
+    if (payload.field_of_study) form.append("field_of_study", payload.field_of_study);
+    form.append("file", payload.file);
+    return request<ResumeDetail>("/resumes/upload", { method: "POST", raw: true, body: form });
   },
   analyze(resumeId: string) {
     return request<Analysis>(`/resumes/${resumeId}/analyze`, { method: "POST" });
@@ -250,11 +264,60 @@ export const jobMatchApi = {
   },
 };
 
-export const adminApi = {
-  listUsers() {
-    return request<User[]>("/admin/users");
+export const jobPostingsApi = {
+  list(statusFilter?: JobPostingStatus) {
+    const query = statusFilter ? `?status=${statusFilter}` : "";
+    return request<JobPosting[]>(`/job-postings${query}`);
   },
-  updateUser(userId: string, payload: { role?: UserRole; is_active?: boolean }) {
-    return request<User>(`/admin/users/${userId}`, { method: "PATCH", body: payload });
+  get(id: string) {
+    return request<JobPosting>(`/job-postings/${id}`);
+  },
+  create(payload: { title: string; company?: string; career_field?: string; location?: string; raw_text: string }) {
+    return request<JobPosting>("/job-postings", { method: "POST", body: payload });
+  },
+  update(id: string, payload: Partial<{ title: string; company: string; career_field: string; location: string; raw_text: string }>) {
+    return request<JobPosting>(`/job-postings/${id}`, { method: "PATCH", body: payload });
+  },
+  publish(id: string) {
+    return request<JobPosting>(`/job-postings/${id}/publish`, { method: "POST" });
+  },
+  close(id: string) {
+    return request<JobPosting>(`/job-postings/${id}/close`, { method: "POST" });
+  },
+  remove(id: string) {
+    return request<void>(`/job-postings/${id}`, { method: "DELETE" });
+  },
+  listApplications(id: string, filters?: { status?: ApplicationStatus; qualified?: boolean }) {
+    const params = new URLSearchParams();
+    if (filters?.status) params.set("status", filters.status);
+    if (filters?.qualified !== undefined) params.set("qualified", String(filters.qualified));
+    const query = params.toString() ? `?${params.toString()}` : "";
+    return request<Application[]>(`/job-postings/${id}/applications${query}`);
+  },
+};
+
+export const applicationsApi = {
+  updateStatus(id: string, status: ApplicationStatus) {
+    return request<Application>(`/applications/${id}`, { method: "PATCH", body: { status } });
+  },
+};
+
+export const publicApi = {
+  getPosting(token: string) {
+    return request<PublicJobPosting>(`/public/postings/${token}`, { skipAuth: true });
+  },
+  apply(token: string, payload: { name: string; email: string; phone?: string; field_of_study?: string; file: File }) {
+    const form = new FormData();
+    form.append("name", payload.name);
+    form.append("email", payload.email);
+    if (payload.phone) form.append("phone", payload.phone);
+    if (payload.field_of_study) form.append("field_of_study", payload.field_of_study);
+    form.append("file", payload.file);
+    return request<PublicApplyResponse>(`/public/postings/${token}/apply`, {
+      method: "POST",
+      skipAuth: true,
+      raw: true,
+      body: form,
+    });
   },
 };

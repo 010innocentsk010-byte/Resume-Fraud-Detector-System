@@ -1,122 +1,180 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import { CheckCircle2, Plus, Search, UserRound } from "lucide-react";
+import { FileText, Send, UploadCloud } from "lucide-react";
 import { Topbar } from "@/components/layout/Topbar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
-import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import { Spinner } from "@/components/ui/Spinner";
+import { Input, Label } from "@/components/ui/Input";
+import { CareerCombobox } from "@/components/ui/CareerCombobox";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
-import { Modal } from "@/components/ui/Modal";
-import { AddApplicantForm } from "@/components/candidates/AddApplicantForm";
-import { ResumeUploadCard } from "@/components/candidates/ResumeUploadCard";
-import { applicantsApi } from "@/lib/api";
-import { useAsync } from "@/lib/hooks";
-import { cn, initials } from "@/lib/utils";
-import type { Applicant } from "@/lib/types";
+import { ApiError, resumesApi } from "@/lib/api";
+import { cn } from "@/lib/utils";
+
+const ACCEPTED_TYPES = [
+  "application/pdf",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+];
 
 export default function UploadPage() {
-  const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState<Applicant | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
   const router = useRouter();
+  const [form, setForm] = useState({ name: "", email: "", phone: "", fieldOfStudy: "" });
+  const [file, setFile] = useState<File | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const { data, error, isLoading } = useAsync(() => applicantsApi.list(query || undefined), [query]);
+  function handleFile(candidate: File) {
+    const isAcceptedType = ACCEPTED_TYPES.includes(candidate.type);
+    const isAcceptedExt = /\.(pdf|docx)$/i.test(candidate.name);
+    if (!isAcceptedType && !isAcceptedExt) {
+      setError("Only PDF and DOCX resumes are supported.");
+      return;
+    }
+    setError(null);
+    setFile(candidate);
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!file) {
+      setError("Attach a resume (PDF or DOCX) to continue.");
+      return;
+    }
+    setError(null);
+    setIsSubmitting(true);
+    try {
+      const resume = await resumesApi.uploadDirect({
+        name: form.name,
+        email: form.email,
+        phone: form.phone || undefined,
+        field_of_study: form.fieldOfStudy || undefined,
+        file,
+      });
+      router.push(`/candidates/${resume.applicant_id}`);
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : "Upload failed. Please try again.");
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <>
-      <Topbar title="Upload resume" description="Select a candidate, then upload their resume for fraud analysis" />
+      <Topbar title="Upload resume" description="Upload a candidate's resume for fraud analysis — parsed and analyzed automatically" />
 
       <div className="flex-1 space-y-5 p-4 sm:p-6">
-        <Card>
+        <Card className="mx-auto max-w-2xl">
           <CardHeader>
             <div>
-              <CardTitle>1. Select a candidate</CardTitle>
-              <CardDescription>Search for an existing candidate or add a new one</CardDescription>
+              <CardTitle>Candidate & resume</CardTitle>
+              <CardDescription>
+                If this email already has a candidate profile, the resume is added to it — otherwise a new one is
+                created automatically.
+              </CardDescription>
             </div>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex gap-3">
-              <div className="relative flex-1">
-                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted" />
-                <Input
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search candidates..."
-                  className="pl-9"
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {error && <ErrorBanner message={error} />}
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <Label htmlFor="upload-name">Full name</Label>
+                  <Input
+                    id="upload-name"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                    placeholder="Alex Candidate"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="upload-email">Email</Label>
+                  <Input
+                    id="upload-email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                    placeholder="alex@candidate.com"
+                  />
+                </div>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <Label htmlFor="upload-phone">Phone (optional)</Label>
+                  <Input
+                    id="upload-phone"
+                    value={form.phone}
+                    onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+                    placeholder="+1 555 000 0000"
+                  />
+                </div>
+                <CareerCombobox
+                  id="upload-field-of-study"
+                  label="Field of study / career (optional)"
+                  value={form.fieldOfStudy}
+                  onChange={(value) => setForm((f) => ({ ...f, fieldOfStudy: value }))}
                 />
               </div>
-              <Button variant="secondary" onClick={() => setModalOpen(true)}>
-                <Plus className="size-4" />
-                New
-              </Button>
-            </div>
 
-            {isLoading && <Spinner label="Loading candidates..." />}
-            {error && <ErrorBanner message={error} />}
-
-            {data && data.length > 0 && (
-              <div className="grid gap-2 sm:grid-cols-2">
-                {data.map((applicant) => {
-                  const isSelected = selected?.id === applicant.id;
-                  return (
-                    <button
-                      key={applicant.id}
-                      onClick={() => setSelected(applicant)}
-                      className={cn(
-                        "flex items-center gap-3 rounded-lg border px-3.5 py-2.5 text-left transition-colors",
-                        isSelected
-                          ? "border-brand bg-brand/5"
-                          : "border-border hover:border-brand/40 hover:bg-surface-muted"
-                      )}
-                    >
-                      <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand/10 text-xs font-semibold text-brand">
-                        {initials(applicant.name) || <UserRound className="size-4" />}
-                      </div>
-                      <div className="min-w-0">
-                        <p className="truncate text-sm font-medium text-foreground">{applicant.name}</p>
-                        <p className="truncate text-xs text-muted">{applicant.email}</p>
-                      </div>
-                      {isSelected && <CheckCircle2 className="ml-auto size-4 shrink-0 text-brand" />}
-                    </button>
-                  );
-                })}
+              <div>
+                <Label>Resume (PDF or DOCX)</Label>
+                <div
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragging(true);
+                  }}
+                  onDragLeave={() => setIsDragging(false)}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setIsDragging(false);
+                    const dropped = e.dataTransfer.files?.[0];
+                    if (dropped) handleFile(dropped);
+                  }}
+                  onClick={() => inputRef.current?.click()}
+                  className={cn(
+                    "flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-6 py-8 text-center transition-colors",
+                    isDragging ? "border-brand bg-brand/5" : "border-border hover:border-brand/50 hover:bg-surface-muted"
+                  )}
+                >
+                  <input
+                    ref={inputRef}
+                    type="file"
+                    accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    className="hidden"
+                    onChange={(e) => {
+                      const selected = e.target.files?.[0];
+                      if (selected) handleFile(selected);
+                      e.target.value = "";
+                    }}
+                  />
+                  {file ? (
+                    <>
+                      <FileText className="size-6 text-brand" />
+                      <p className="text-sm font-medium text-foreground">{file.name}</p>
+                      <p className="text-xs text-muted">Click or drop to replace</p>
+                    </>
+                  ) : (
+                    <>
+                      <UploadCloud className="size-6 text-muted" />
+                      <p className="text-sm font-medium text-foreground">Drop a resume here, or click to browse</p>
+                      <p className="text-xs text-muted">PDF or DOCX, up to 10MB</p>
+                    </>
+                  )}
+                </div>
               </div>
-            )}
+
+              <Button type="submit" className="w-full" isLoading={isSubmitting}>
+                <Send className="size-4" />
+                Upload & analyze
+              </Button>
+            </form>
           </CardContent>
         </Card>
-
-        {selected && (
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-            <Card>
-              <CardHeader>
-                <div>
-                  <CardTitle>2. Upload resume for {selected.name}</CardTitle>
-                  <CardDescription>PDF or DOCX — parsed and analyzed automatically</CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ResumeUploadCard
-                  applicantId={selected.id}
-                  onUploaded={() => router.push(`/candidates/${selected.id}`)}
-                />
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
       </div>
-
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Add a candidate">
-        <AddApplicantForm
-          onCreated={(applicant) => {
-            setModalOpen(false);
-            setSelected(applicant);
-          }}
-        />
-      </Modal>
     </>
   );
 }

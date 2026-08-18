@@ -24,6 +24,7 @@ export interface Applicant {
   field_of_study: string | null;
   created_at: string;
   resume_count: number;
+  latest_resume_id: string | null;
   latest_fraud_score: number | null;
   latest_risk_level: RiskLevel | null;
   latest_flag_count: number | null;
@@ -151,7 +152,8 @@ export interface JobDescription {
 export interface JobMatch {
   id: string;
   resume_id: string;
-  job_description_id: string;
+  job_description_id: string | null;
+  job_posting_id: string | null;
   match_score: number;
   matched_skills: string[];
   missing_skills: string[];
@@ -215,4 +217,63 @@ export interface DashboardAnalytics {
   risk_distribution: RiskDistributionPoint[];
   fraud_trend: TrendPoint[];
   top_flag_categories: FlagCategoryCount[];
+}
+
+export type JobPostingStatus = "draft" | "published" | "closed";
+
+export interface JobPosting {
+  id: string;
+  title: string;
+  company: string | null;
+  career_field: string | null;
+  location: string | null;
+  raw_text: string;
+  parsed_skills: string[];
+  status: JobPostingStatus;
+  public_token: string;
+  published_at: string | null;
+  closed_at: string | null;
+  created_at: string;
+  application_count: number;
+}
+
+export interface PublicJobPosting {
+  title: string;
+  company: string | null;
+  career_field: string | null;
+  location: string | null;
+  description: string;
+  parsed_skills: string[];
+  status: JobPostingStatus;
+}
+
+export interface PublicApplyResponse {
+  message: string;
+  submitted_at: string;
+}
+
+export type ApplicationStatus = "new" | "reviewed" | "shortlisted" | "rejected" | "hired";
+export type ApplicationSource = "public_link" | "manual";
+
+export interface ApplicationApplicant {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+}
+
+export interface Application {
+  id: string;
+  job_posting_id: string;
+  applicant: ApplicationApplicant;
+  resume_id: string;
+  status: ApplicationStatus;
+  source: ApplicationSource;
+  created_at: string;
+  match_score: number | null;
+  matched_skills: string[];
+  missing_skills: string[];
+  fraud_score: number | null;
+  risk_level: RiskLevel | null;
+  qualified: boolean | null;
 }

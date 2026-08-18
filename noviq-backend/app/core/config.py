@@ -48,6 +48,22 @@ class Settings(BaseSettings):
     GHANA_EDU_API_TIMEOUT_SECONDS: float = 5.0
     EDUCATION_VERIFY_RATE_LIMIT_PER_MINUTE: int = 20
 
+    # --- Candidate Notification Email ---
+    # Leave SMTP_HOST blank to skip sending — logs a warning instead of
+    # failing the apply request. Works with any standard SMTP provider
+    # (Gmail, SES, SendGrid, Mailgun, ...); no provider-specific SDK.
+    SMTP_HOST: str = ""
+    SMTP_PORT: int = 587
+    SMTP_USERNAME: str = ""
+    SMTP_PASSWORD: str = ""
+    SMTP_USE_TLS: bool = True
+    EMAIL_FROM_ADDRESS: str = ""
+    EMAIL_FROM_NAME: str = "Noviq Intelligence"
+
+    # --- Public job-posting apply link (unauthenticated intake) ---
+    PUBLIC_APPLY_RATE_LIMIT_PER_HOUR: int = 10
+    PUBLIC_VIEW_RATE_LIMIT_PER_MINUTE: int = 60
+
 
 @lru_cache
 def get_settings() -> Settings:

@@ -3,11 +3,10 @@
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, FileStack, GraduationCap, Mail, Phone, UserRound } from "lucide-react";
 import { Topbar } from "@/components/layout/Topbar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Spinner } from "@/components/ui/Spinner";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { ResumeUploadCard } from "@/components/candidates/ResumeUploadCard";
 import { ResumeRow } from "@/components/candidates/ResumeRow";
 import { applicantsApi, resumesApi } from "@/lib/api";
 import { useAsync } from "@/lib/hooks";
@@ -72,18 +71,6 @@ export default function CandidateDetailPage() {
           </Card>
         )}
 
-        <Card>
-          <CardHeader>
-            <div>
-              <CardTitle>Upload a resume</CardTitle>
-              <CardDescription>PDF or DOCX — text is extracted and analyzed automatically after upload</CardDescription>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <ResumeUploadCard applicantId={applicantId} onUploaded={() => resumesState.refetch()} />
-          </CardContent>
-        </Card>
-
         <Card className="overflow-hidden">
           <CardHeader className="pb-4">
             <div>
@@ -99,7 +86,7 @@ export default function CandidateDetailPage() {
             </div>
           )}
           {resumesState.data && resumesState.data.length === 0 && (
-            <EmptyState icon={FileStack} title="No resumes uploaded yet" description="Upload one above to get started." />
+            <EmptyState icon={FileStack} title="No resumes on file" description="This candidate has no resume submitted yet." />
           )}
           {resumesState.data && resumesState.data.length > 0 && (
             <div className="mt-2">

@@ -36,6 +36,7 @@ def _to_applicant_read(db: Session, applicant: Applicant) -> ApplicantRead:
         field_of_study=applicant.field_of_study,
         created_at=applicant.created_at,
         resume_count=resume_count,
+        latest_resume_id=latest_analysis.resume_id if latest_analysis else None,
         latest_fraud_score=latest_analysis.fraud_score if latest_analysis else None,
         latest_risk_level=latest_analysis.risk_level if latest_analysis else None,
         latest_flag_count=len(latest_analysis.flags) if latest_analysis else None,

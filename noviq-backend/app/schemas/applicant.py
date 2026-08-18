@@ -23,6 +23,7 @@ class ApplicantRead(BaseModel):
     field_of_study: str | None = None
     created_at: datetime
     resume_count: int = 0
+    latest_resume_id: uuid.UUID | None = None
     latest_fraud_score: float | None = None
     latest_risk_level: RiskLevel | None = None
     latest_flag_count: int | None = None

@@ -11,7 +11,6 @@ class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8, max_length=128)
     organization: str | None = None
-    role: UserRole = UserRole.RECRUITER
 
 
 class UserLogin(BaseModel):

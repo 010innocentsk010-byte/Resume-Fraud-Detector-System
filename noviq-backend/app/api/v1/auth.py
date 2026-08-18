@@ -38,13 +38,12 @@ def register(payload: UserCreate, db: Session = Depends(get_db)) -> User:
         name=payload.name,
         email=payload.email,
         password_hash=hash_password(payload.password),
-        role=payload.role,
         organization=payload.organization,
     )
     db.add(user)
     db.commit()
     db.refresh(user)
-    logger.info("New user registered: %s (role=%s)", user.email, user.role)
+    logger.info("New user registered: %s", user.email)
     return user
 
 
